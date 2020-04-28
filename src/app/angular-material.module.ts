@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   exports: [
@@ -17,7 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    MatDialogModule
-  ]
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+  ],
 })
 export class AngularMaterialModule {}

@@ -1,0 +1,26 @@
+- Authentication
+  - Login form: username instead of email
+  - Registration form - 2 forms
+  - Password checking using regex
+  - Change information sent and recieved
+  - Prettier navigation
+  - Admin
+    - User handling
+  - Capatcha
+
+- Farmer
+  - His nursery gardens list view
+  - Dashboard for specific nursery garden
+
+- Nursery garden model
+- One warhouse for every nursery garden
+- Plant model
+- Product model
+
+- Online store
+  - Sort
+  - Filter
+  - Ordered and delivered
+  - Cancel orders
+
+- Server-side workers to reduce the amount of water and temperature

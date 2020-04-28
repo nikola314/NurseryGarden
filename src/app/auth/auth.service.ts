@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 const BACKEND_URL = environment.apiUrl + '/auth/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private token: string;
@@ -34,33 +34,30 @@ export class AuthService {
     return this.userId;
   }
 
-  createUser(email: string, password: string) {
-    const authData: AuthData = {
-      email: email,
-      password: password
-    };
+  createUser(authData: AuthData) {
     return this.http.post(BACKEND_URL + 'signup', authData).subscribe(
-      response => {
+      (response) => {
         this.router.navigate(['/login']);
       },
-      error => {
+      (error) => {
         this.authStatusLIstener.next(false);
       }
     );
   }
 
   login(email: string, password: string) {
-    const authData: AuthData = {
+    // TODO: login with username
+    const loginData = {
       email: email,
-      password: password
+      password: password,
     };
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
         BACKEND_URL + 'login',
-        authData
+        loginData
       )
       .subscribe(
-        response => {
+        (response) => {
           const token = response.token;
           this.token = token;
           if (token) {
@@ -77,7 +74,7 @@ export class AuthService {
             this.router.navigate(['/']);
           }
         },
-        error => {
+        (error) => {
           this.authStatusLIstener.next(false);
         }
       );
@@ -137,7 +134,7 @@ export class AuthService {
     return {
       token: token,
       expirationDate: new Date(expirationDate),
-      userId: userId
+      userId: userId,
     };
   }
 }

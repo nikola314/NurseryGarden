@@ -6,8 +6,18 @@ exports.creteUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
             email: req.body.email,
-            password: hash
+            password: hash,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            approved: req.body.approved,
+            username: req.body.username,
+            phone: req.body.phone,
+            location: req.body.location,
+            date: req.body.date,
+            isCompany: req.body.isCompany
         });
+        console.log(user);
+        console.log(req.body);
         user
             .save()
             .then(result => {
@@ -17,6 +27,7 @@ exports.creteUser = (req, res, next) => {
                 });
             })
             .catch(err => {
+                console.log(err);
                 res.status(500).json({
                     message: "Invalid authentication credentials!"
                 });

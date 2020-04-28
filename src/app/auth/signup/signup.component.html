@@ -1,14 +1,56 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+    <form (submit)="onSignup()" [formGroup]="form" name="signupForm" *ngIf="!isLoading">
+        <mat-form-field floatLabel="always" appearance="none">
+            <mat-slide-toggle name="isCompany" [checked]="isCompany" (change)="switchAccountType($event)"><b>{{accountType}}</b></mat-slide-toggle>
+            <textarea matInput hidden></textarea>
+        </mat-form-field>
+
         <mat-form-field>
-            <input matInput type="email" name="title" placeholder="E-Mail" required email #emailInput="ngModel" name="email" ngModel>
-            <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
+            <input formControlName="firstName" matInput type="text" name="first_name" placeholder="{{firstNamePlaceholder}}">
+            <mat-error *ngIf="this.form.get('firstName').invalid">Please enter a valid name</mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="!isCompany">
+            <input formControlName="lastName" matInput type="text" name="last_name" placeholder="Last Name">
+            <mat-error *ngIf="this.form.get('lastName').invalid">Please enter a valid name</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Password" ngModel name="password" #passwordInput="ngModel" required>
-            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password</mat-error>
+            <input formControlName="username" matInput type="text" name="username" placeholder="{{usernamePlaceholder}}">
+            <mat-error *ngIf="this.form.get('username').invalid">Please enter a valid and unique username</mat-error>
         </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="email" matInput type="email" placeholder="E-Mail" email name="email">
+            <mat-error *ngIf="this.form.get('email').invalid">Please enter a valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="password" type="password" matInput placeholder="Password" name="password">
+            <mat-error *ngIf="this.form.get('password').invalid">Please enter a valid password</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="confirmPassword" type="password" matInput placeholder="Confirm Password" name="confirm_password" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="this.form.hasError('notSame')">Passwords must match!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="location" type="text" matInput placeholder="Location" name="location">
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="phone" type="text" matInput placeholder="Phone Number" name="phone">
+            <mat-error *ngIf="this.form.get('phone').invalid">Please enter a valid phone number</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker" name="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="this.form.get('date').invalid">Please enter a valid date</mat-error>
+        </mat-form-field>
+
+
+        <!-- todo: finish form -->
+
+
         <button *ngIf="!isLoading" mat-raised-button color="primary" type="submit">Signup</button>
         <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
