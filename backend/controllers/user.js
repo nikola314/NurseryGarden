@@ -37,7 +37,7 @@ exports.creteUser = (req, res, next) => {
 
 exports.login = (req, res, next) => {
     let fetchedUser;
-    User.findOne({ email: req.body.email })
+    User.findOne({ username: req.body.username })
         .then(user => {
             if (!user) {
                 return res.status("401").json({
@@ -53,7 +53,7 @@ exports.login = (req, res, next) => {
                     message: "Invalid authentication credentials!"
                 });
             }
-            const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id },
+            const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id },
                 process.env.JWT_SECRET, { expiresIn: "1h" }
             );
             res.status(200).json({

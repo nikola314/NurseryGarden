@@ -45,10 +45,10 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     // TODO: login with username
     const loginData = {
-      email: email,
+      username: username,
       password: password,
     };
     this.http

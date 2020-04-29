@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           validators: [
             Validators.required,
             Validators.pattern(
-              '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z]{1}[A-Za-z\\d@$!%*?&]{6,}$'
+              '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%_*?&])[A-Za-z]{1}[A-Za-z\\d@$!%_*?&]{6,}$'
             ),
           ],
         }),

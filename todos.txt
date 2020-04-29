@@ -1,7 +1,7 @@
 - Authentication
-  - Login form: username instead of email
-  - Registration form - 2 forms
-  - Password checking using regex
+  + Login form: username instead of email
+  + Registration form - 2 forms
+  + Password checking using regex
   - Change information sent and recieved
   - Prettier navigation
   - Admin

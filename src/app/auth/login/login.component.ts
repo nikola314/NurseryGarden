@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   isLoading = false;
@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin(form: NgForm) {
     if (form.invalid) return;
     this.isLoading = true;
-    this.authService.login(form.value.email, form.value.password);
+    this.authService.login(form.value.username, form.value.password);
   }
 
   ngOnInit() {
     this.authStatusSub = this.authService
       .getAuthStatusListener()
-      .subscribe(authStatus => {
+      .subscribe((authStatus) => {
         this.isLoading = false;
       });
   }
