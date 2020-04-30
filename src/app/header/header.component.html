@@ -4,9 +4,39 @@
     </span>
     <span class="spacer"></span>
     <ul>
-        <li>
+        <!-- <li>
             <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+        </li> -->
+
+        <!-- ADMIN -->
+        <li *ngIf="userIsAuthenticated && user.isAdmin">
+            <a mat-button routerLink="/" routerLinkActive="mat-accent">Requests</a>
         </li>
+        <li *ngIf="userIsAuthenticated && user.isAdmin">
+            <a mat-button routerLink="/accounts" routerLinkActive="mat-accent">Manage Accounts</a>
+        </li>
+
+        <!-- FARMER -->
+        <li *ngIf="userIsAuthenticated && !user.isAdmin && !user.isCompany">
+            <a mat-button routerLink="/" routerLinkActive="mat-accent">My Gardens</a>
+        </li>
+
+        <!-- COMPANY -->
+        <li *ngIf="userIsAuthenticated && !user.isAdmin && user.isCompany">
+            <a mat-button routerLink="/" routerLinkActive="mat-accent">Orders</a>
+        </li>
+        <li *ngIf="userIsAuthenticated && !user.isAdmin && user.isCompany">
+            <a mat-button routerLink="/products" routerLinkActive="mat-accent">Products</a>
+        </li>
+        <li *ngIf="userIsAuthenticated && !user.isAdmin && user.isCompany">
+            <a mat-button routerLink="/stats" routerLinkActive="mat-accent">Statistics</a>
+        </li>
+
+
+        <li *ngIf="userIsAuthenticated && !user.isAdmin">
+            <a mat-button routerLink="/store" routerLinkActive="mat-accent">Store</a>
+        </li>
+        <!-- ALL -->
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
@@ -14,7 +44,11 @@
             <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
         </li>
         <li *ngIf="userIsAuthenticated">
-            <button mat-button (click)="onLogout()">Logout</button>
+            <button mat-button [matMenuTriggerFor]="accountMenu">Account</button>
+            <mat-menu #accountMenu="matMenu">
+                <button mat-menu-item (click)="onChangePassword()">Change Password</button>
+                <button mat-menu-item (click)="onLogout()">Log Out</button>
+            </mat-menu>
         </li>
     </ul>
 </mat-toolbar>

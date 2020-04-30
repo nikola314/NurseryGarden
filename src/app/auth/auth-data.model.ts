@@ -10,3 +10,11 @@ export interface AuthData {
   username: string;
   location: string;
 }
+
+export interface SignedUserData {
+  token: string;
+  expiresIn: number;
+  userId: string;
+  isAdmin: boolean;
+  isCompany: boolean;
+}

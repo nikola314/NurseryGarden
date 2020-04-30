@@ -14,10 +14,9 @@ exports.creteUser = (req, res, next) => {
             phone: req.body.phone,
             location: req.body.location,
             date: req.body.date,
-            isCompany: req.body.isCompany
+            isCompany: req.body.isCompany,
+            isAdmin: false
         });
-        console.log(user);
-        console.log(req.body);
         user
             .save()
             .then(result => {
@@ -53,14 +52,17 @@ exports.login = (req, res, next) => {
                     message: "Invalid authentication credentials!"
                 });
             }
-            const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id },
+            const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id, accountType: fetchedUser.isAdmin },
                 process.env.JWT_SECRET, { expiresIn: "1h" }
             );
-            res.status(200).json({
+            const user = {
                 token: token,
                 expiresIn: 3600,
-                userId: fetchedUser._id
-            });
+                userId: fetchedUser._id,
+                isAdmin: fetchedUser.isAdmin,
+                isCompany: fetchedUser.isCompany
+            };
+            res.status(200).json({ userData: user });
         })
         .catch(err => {
             return res.status("401").json({

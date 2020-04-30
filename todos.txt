@@ -2,19 +2,23 @@
   + Login form: username instead of email
   + Registration form - 2 forms
   + Password checking using regex
-  - Change information sent and recieved
-  - Prettier navigation
+  + Change information sent and recieved
+  + Prettier navigation
+  - Change password
   - Admin
     - User handling
   - Capatcha
 
++ Routing - '/' different things for different users
+
 - Farmer
-  - His nursery gardens list view
+  + His nursery gardens list view
+  - Create garden
   - Dashboard for specific nursery garden
 
-- Nursery garden model
++ Nursery garden model
 - One warhouse for every nursery garden
-- Plant model
+- Plant model (or maybe better field)
 - Product model
 
 - Online store
@@ -23,4 +27,5 @@
   - Ordered and delivered
   - Cancel orders
 
-- Server-side workers to reduce the amount of water and temperature
+- Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
+

@@ -7,10 +7,10 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class HomePageGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,11 +20,16 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | import('@angular/router').UrlTree> {
-    const isAuth = this.authService.getIsAuthenticated();
-    if (!isAuth) {
-      this.router.navigate(['/login']);
-    }
+    // TODO: redirect based on user type
+    const user = this.authService.getUser();
+    if (!user) return true;
 
-    return true;
+    if (user.isAdmin) {
+      this.router.navigate(['/requests']);
+    } else if (user.isCompany) {
+      this.router.navigate(['/orders']);
+    } else {
+      this.router.navigate(['/gardens']);
+    }
   }
 }
