@@ -29,3 +29,4 @@
 
 - Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
+mongo "mongodb+srv://cluster0-unpq0.mongodb.net/test"  --username pia

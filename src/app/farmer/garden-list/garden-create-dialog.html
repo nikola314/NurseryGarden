@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Create New Garden</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.name" #nameInput="ngModel" required>
+        <mat-error *ngIf="nameInput.invalid">Name is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" [(ngModel)]="data.location" #locationInput="ngModel" required>
+        <mat-error *ngIf="locationInput.invalid">Location is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Width</mat-label>
+        <input matInput type="number" [(ngModel)]="data.width" #widthInput="ngModel" required min="1" oninput="validity.valid||(value='');">
+        <mat-error *ngIf="widthInput.invalid">Width must be a positive number</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Height</mat-label>
+        <input matInput type="number" [(ngModel)]="data.height" #heightInput="ngModel" required min="1" oninput="validity.valid||(value='');">
+        <mat-error *ngIf="heightInput.invalid">Height must be a positive number</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>

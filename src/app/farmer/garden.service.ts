@@ -45,6 +45,19 @@ export class GardenService {
       });
   }
 
+  // TODO: send to back
+  addGarden(data) {
+    const gardenData = new FormData();
+    // gardenData.append('title', title);
+    // gardenData.append('content', content);
+    // gardenData.append('image', image, title);
+    this.http
+      .post<{ message: string; garden: Garden }>(BACKEND_URL, gardenData)
+      .subscribe((responseData) => {
+        this.router.navigate(['/']);
+      });
+  }
+
   getGardensUpdateListener() {
     return this.gardensUpdated.asObservable();
   }
@@ -59,18 +72,6 @@ export class GardenService {
       imagePath: string;
       creator: string;
     }>(BACKEND_URL + id);
-  }
-
-  addPost(title: string, content: string, image: File) {
-    const gardenData = new FormData();
-    gardenData.append('title', title);
-    gardenData.append('content', content);
-    gardenData.append('image', image, title);
-    this.http
-      .post<{ message: string; garden: Garden }>(BACKEND_URL, gardenData)
-      .subscribe((responseData) => {
-        this.router.navigate(['/']);
-      });
   }
 
   updatePost(id: string, title: string, content: string, image: File | string) {
