@@ -2,6 +2,9 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cron = require("node-cron");
+
+const jobs = require("./cron-jobs");
 
 const postsRoutes = require("./routes/posts");
 const authRoutes = require("./routes/auth");
@@ -9,6 +12,7 @@ const gardensRoutes = require("./routes/gardens");
 
 const app = express();
 
+// Database settings
 mongoose
     .connect(
         "mongodb+srv://pia:" +
@@ -42,5 +46,10 @@ app.use((req, res, next) => {
 app.use("/api/posts", postsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/gardens", gardensRoutes);
+
+cron.schedule("1 * * * *", function() {
+    // TODO: maybe add date created to gardens and check if hour actually passed and run cron more often
+    jobs.updateGardens();
+});
 
 module.exports = app;

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.creteUser = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10).then(hash => {
+    bcrypt.hash(req.body.password, 10).then((hash) => {
         const user = new User({
             email: req.body.email,
             password: hash,
@@ -15,20 +15,20 @@ exports.creteUser = (req, res, next) => {
             location: req.body.location,
             date: req.body.date,
             isCompany: req.body.isCompany,
-            isAdmin: false
+            isAdmin: false,
         });
         user
             .save()
-            .then(result => {
+            .then((result) => {
                 res.status(201).json({
                     message: "User created!",
-                    result: result
+                    result: result,
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
                 res.status(500).json({
-                    message: "Invalid authentication credentials!"
+                    message: "Invalid authentication credentials!",
                 });
             });
     });
@@ -37,22 +37,26 @@ exports.creteUser = (req, res, next) => {
 exports.login = (req, res, next) => {
     let fetchedUser;
     User.findOne({ username: req.body.username })
-        .then(user => {
+        .then((user) => {
             if (!user) {
                 return res.status("401").json({
-                    message: "Auth failed"
+                    message: "Auth failed",
                 });
             }
             fetchedUser = user;
             return bcrypt.compare(req.body.password, user.password);
         })
-        .then(result => {
+        .then((result) => {
             if (!result) {
                 return res.status("401").json({
-                    message: "Invalid authentication credentials!"
+                    message: "Invalid authentication credentials!",
                 });
             }
-            const token = jwt.sign({ username: fetchedUser.username, userId: fetchedUser._id, accountType: fetchedUser.isAdmin },
+            const token = jwt.sign({
+                    username: fetchedUser.username,
+                    userId: fetchedUser._id,
+                    accountType: fetchedUser.isAdmin,
+                },
                 process.env.JWT_SECRET, { expiresIn: "1h" }
             );
             const user = {
@@ -60,13 +64,48 @@ exports.login = (req, res, next) => {
                 expiresIn: 3600,
                 userId: fetchedUser._id,
                 isAdmin: fetchedUser.isAdmin,
-                isCompany: fetchedUser.isCompany
+                isCompany: fetchedUser.isCompany,
             };
             res.status(200).json({ userData: user });
         })
-        .catch(err => {
+        .catch((err) => {
             return res.status("401").json({
-                message: "Auth failed"
+                message: "Auth failed",
+            });
+        });
+};
+
+exports.changePassword = (req, res, next) => {
+    User.findById(req.userData.userId)
+        .then((user) => {
+            if (!user) {
+                return res.status("401").json({
+                    message: "Auth failed",
+                });
+            }
+            return bcrypt.compare(req.body.currentPassword, user.password);
+        })
+        .then((result) => {
+            if (!result) {
+                return res.status("401").json({
+                    message: "Auth failed",
+                });
+            }
+            bcrypt.hash(req.body.newPassword, 10).then((hash) => {
+                User.updateOne({ username: req.userData.username }, { password: hash }).then((result) => {
+                    if (result.n > 0) {
+                        console.log("changed successfuly");
+                        res.status(200).json({ message: "Password changed successfully!" });
+                    } else {
+                        res.status(401).json({ message: "Not authorized!" });
+                    }
+                });
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status("401").json({
+                message: "Auth failed",
             });
         });
 };

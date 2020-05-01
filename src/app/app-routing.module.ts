@@ -8,6 +8,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { GardenListComponent } from './farmer/garden-list/garden-list.component';
 import { GardenDashboardComponent } from './farmer/garden-dashboard/garden-dashboard.component';
 import { HomePageGuard } from './homepage.guard';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -20,6 +21,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'gardens', component: GardenListComponent },
+  {
+    path: 'changePassword',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'gardens/:gardenId',
     component: GardenDashboardComponent,

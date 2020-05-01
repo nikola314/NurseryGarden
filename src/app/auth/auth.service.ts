@@ -51,6 +51,18 @@ export class AuthService {
     );
   }
 
+  changePassword(passData) {
+    console.log(JSON.stringify(passData));
+    return this.http.post(BACKEND_URL + 'changePassword', passData).subscribe(
+      (response) => {
+        this.logout();
+      },
+      (error) => {
+        this.authStatusLIstener.next(false);
+      }
+    );
+  }
+
   login(username: string, password: string) {
     const loginData = {
       username: username,

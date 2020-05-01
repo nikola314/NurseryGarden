@@ -4,7 +4,7 @@
   + Password checking using regex
   + Change information sent and recieved
   + Prettier navigation
-  - Change password
+  + Change password
   - Admin
     - User handling
   - Capatcha
@@ -28,6 +28,6 @@
   - Ordered and delivered
   - Cancel orders
 
-- Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
++ Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
 mongo "mongodb+srv://cluster0-unpq0.mongodb.net/test"  --username pia

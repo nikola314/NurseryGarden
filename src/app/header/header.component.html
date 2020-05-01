@@ -46,7 +46,7 @@
         <li *ngIf="userIsAuthenticated">
             <button mat-button [matMenuTriggerFor]="accountMenu">Account</button>
             <mat-menu #accountMenu="matMenu">
-                <button mat-menu-item (click)="onChangePassword()">Change Password</button>
+                <button mat-menu-item routerLink="/changePassword">Change Password</button>
                 <button mat-menu-item (click)="onLogout()">Log Out</button>
             </mat-menu>
         </li>
