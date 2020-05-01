@@ -6,6 +6,8 @@ export interface Garden {
   water: number;
   temperature: number;
   occupied: number;
+  width: number;
+  height: number;
   empty: number;
 }
 

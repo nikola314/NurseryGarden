@@ -13,7 +13,8 @@
 
 - Farmer
   + His nursery gardens list view
-  - Create garden
+  - passing query parameters for list view
+  + Create garden
   - Dashboard for specific nursery garden
 
 + Nursery garden model

@@ -59,13 +59,10 @@ export class GardenListComponent implements OnInit, OnDestroy {
   }
 
   newGarden() {
-    console.log('in');
     if (!this.authService.getIsAuthenticated()) return;
-    console.log('after if');
     const dialogRef = this.gardenCreateDialog.open(GardenCreateDialog, {
       data: null,
     });
-    console.log('dialogRef = ' + dialogRef);
     dialogRef.afterClosed().subscribe((result: GardenCreateDialogData) => {
       if (result) {
         if (
@@ -73,12 +70,7 @@ export class GardenListComponent implements OnInit, OnDestroy {
           this.isEmptyString(result.location)
         )
           return;
-        this.gardensService.addGarden({
-          ...result,
-          occupied: 0,
-          temperature: 18,
-          water: 200,
-        });
+        this.gardensService.addGarden(result);
       }
     });
   }

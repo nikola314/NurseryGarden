@@ -31,6 +31,8 @@ export class GardenService {
                 temperature: garden.temperature,
                 occupied: garden.occupied,
                 empty: garden.width * garden.height - garden.occupied,
+                width: garden.width,
+                height: garden.height,
                 id: garden._id,
               };
             }),
@@ -45,16 +47,11 @@ export class GardenService {
       });
   }
 
-  // TODO: send to back
   addGarden(data) {
-    const gardenData = new FormData();
-    // gardenData.append('title', title);
-    // gardenData.append('content', content);
-    // gardenData.append('image', image, title);
     this.http
-      .post<{ message: string; garden: Garden }>(BACKEND_URL, gardenData)
+      .post<{ message: string; garden: any }>(BACKEND_URL, data)
       .subscribe((responseData) => {
-        this.router.navigate(['/']);
+        this.getGardens();
       });
   }
 
