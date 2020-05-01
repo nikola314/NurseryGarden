@@ -1,0 +1,23 @@
+{
+    "folders": [
+        "!**/node_modules",
+        "!**/_build",
+        "!**/_test",
+        "!**/_doc",
+        "!**/verify",
+        "!**/e2e",
+        "!gourmet-builder/lib",
+        "!gourmet-server/lib",
+        "!gourmet-runtime/runtime",
+        "!benchmark",
+        "!spec-sketch"
+    ],
+    "files": [
+        "**/*.js",
+        "**/*.ts",
+        "**/*.html",
+        "**/*.css",
+        "!**/temp.js",
+        "!**/karma.conf.js"
+    ]
+}
