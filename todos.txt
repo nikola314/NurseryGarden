@@ -5,9 +5,11 @@
   + Change information sent and recieved
   + Prettier navigation
   + Change password
-  - Admin
-    - User handling
   - Capatcha
+  - Dont allow login if not approved
+  - Admin
+    - Approve users
+    - Create or delete users
 
 + Routing - '/' different things for different users
 
@@ -15,12 +17,22 @@
   + His nursery gardens list view
   - passing query parameters for list view
   + Create garden
-  - Dashboard for specific nursery garden
-
-+ Nursery garden model
-- One warhouse for every nursery garden
-- Plant model (or maybe better field)
-- Product model
+  + Dashboard for specific nursery garden
+  + Inc/Dec temperature and water
+  + Plan grid
+  + Popover on every plant
+  - Applying products on plants
+  - Display garden name/location
+  - plant images ( progress dependent )
+  - Notification (garden needs attention)
+  - Bind (populate) product to slot so product.time is accessible for progress
+  - Create some products, orders, companies to test
+  + Slot model
+  + Nursery garden model
+  - One warhouse for every nursery garden
+  - Product model
+  - Product service
+  - Order model
 
 - Online store
   - Sort

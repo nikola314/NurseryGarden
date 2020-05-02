@@ -12,7 +12,7 @@ router.put("/:id", checkAuth, gardenController.updateGarden);
 
 router.get("", checkAuth, gardenController.getGardens);
 
-router.get("/:id", gardenController.getGarden);
+router.get("/:id", checkAuth, gardenController.getGarden);
 
 router.delete("/:id", checkAuth, gardenController.deleteGarden);
 

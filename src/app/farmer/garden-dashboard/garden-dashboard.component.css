@@ -1,0 +1,38 @@
+.control-menu-item {
+    width: 50%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+mat-list {
+    width: 100%;
+    float: right;
+    padding: 0;
+}
+
+.icon-water {
+    color: lightskyblue;
+}
+
+.icon-temp {
+    color: orangered;
+}
+
+.num-icon {
+    display: table-cell;
+    padding-top: 1px;
+    font-size: 20px;
+    display: inline;
+}
+
+.plants-grid {
+    width: 100%;
+    float: left;
+}
+
+img {
+    height: 100%;
+}

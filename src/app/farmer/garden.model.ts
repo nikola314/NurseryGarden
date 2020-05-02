@@ -9,6 +9,15 @@ export interface Garden {
   width: number;
   height: number;
   empty: number;
+  slots: [Slot];
+}
+
+export interface Slot {
+  timeToGrow: number; //in ms
+  timePlanted: Date;
+  positionX: number;
+  positionY: number;
+  product: any;
 }
 
 export interface GardenBackendModel {
@@ -21,4 +30,5 @@ export interface GardenBackendModel {
   height: number;
   width: number;
   owner: string;
+  slots: [Slot];
 }

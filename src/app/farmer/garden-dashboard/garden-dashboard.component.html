@@ -1,1 +1,58 @@
-GARDEN DASHBOARD
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Garden">
+        <div>
+            <div class="control-menu-item">
+                <span class="num-icon">{{garden?.water}}</span>
+                <mat-icon aria-hidden="false" class="icon-water">opacity</mat-icon>
+                <button mat-icon-button class="icon-add-remove" (click)="addWater(1)">
+                  <mat-icon >add</mat-icon>
+                  </button>
+                <button mat-icon-button class="icon-add-remove" (click)="addWater(-1)">
+                    <mat-icon >remove</mat-icon>
+                    </button>
+            </div>
+            <div class="control-menu-item">
+                <span class="num-icon">{{garden?.temperature}}</span>
+                <mat-icon class="icon-temp">whatshot</mat-icon>
+                <button mat-icon-button class="icon-add-remove" (click)="addTemperature(0.5)">
+                <mat-icon >add</mat-icon>
+                </button>
+                <button mat-icon-button class="icon-add-remove" (click)="addTemperature(-0.5)">
+                  <mat-icon >remove</mat-icon>
+                  </button>
+            </div>
+        </div>
+        <mat-list>
+            <mat-divider></mat-divider>
+        </mat-list>
+        <div class="plants-grid">
+            <mat-grid-list [cols]="garden.width" rowHeight="100px">
+                <mat-grid-tile *ngFor="let slot of garden.slots" [colspan]="1" [rowspan]="1">
+                    <img [src]="getImagePath(slot)" [mdePopoverTriggerFor]="appPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="hover" alt="">
+                    <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+                        <mat-card style="max-width: 200px; min-width:100px;">
+                            <mat-card-content>
+                                <div *ngIf="slot.timePlanted!=null">
+                                    <!-- Show progress -->
+                                    <mat-spinner value="69"></mat-spinner>
+                                </div>
+                                <div *ngIf="slot.timePlanted==null">
+                                    <!-- Show planting menu -->
+                                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </mde-popover>
+
+
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Storage">
+        <div>
+            <p>Content</p>
+        </div>
+    </mat-tab>
+</mat-tab-group>

@@ -34,6 +34,7 @@ export class GardenService {
                 width: garden.width,
                 height: garden.height,
                 id: garden._id,
+                slots: garden.slots,
               };
             }),
           };
@@ -59,40 +60,22 @@ export class GardenService {
     return this.gardensUpdated.asObservable();
   }
 
-  //  ------------------------------------------------------------------------------------------------------------------------
-
-  getPost(id: string) {
-    return this.http.get<{
-      _id: string;
-      title: string;
-      content: string;
-      imagePath: string;
-      creator: string;
-    }>(BACKEND_URL + id);
+  getGarden(id: string) {
+    return this.http.get<{ message: string; garden: GardenBackendModel }>(
+      BACKEND_URL + id
+    );
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
-    let postData;
-    if (typeof image === 'object') {
-      postData = new FormData();
-      postData.append('id', id);
-      postData.append('title', title);
-      postData.append('content', content);
-      postData.append('image', image, title);
-    } else {
-      postData = {
-        id: id,
-        title: title,
-        content: content,
-        imagePath: image,
-        creator: null,
-      };
-    }
+  updateGarden(id: string, garden: Garden) {
+    let updateData = {
+      temperature: garden.temperature,
+      occupied: garden.occupied,
+      water: garden.water,
+    };
 
-    this.http.put(BACKEND_URL + id, postData).subscribe((response) => {
-      this.router.navigate(['/']);
-    });
+    return this.http.put(BACKEND_URL + id, updateData);
   }
+  //  ----------------------------------------------------------------------------------------------------------------------
 
   deletePost(postId: string) {
     return this.http.delete(BACKEND_URL + postId);

@@ -16,6 +16,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MdePopoverModule } from '@material-extended/mde';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @NgModule({
   exports: [
     MatInputModule,
@@ -35,6 +42,12 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatGridListModule,
     MatTableModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatTooltipModule,
+    MdePopoverModule,
+    MatDividerModule,
+    MatProgressBarModule,
   ],
 })
 export class AngularMaterialModule {}

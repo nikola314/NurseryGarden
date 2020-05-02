@@ -8,7 +8,11 @@ const gardenSchema = mongoose.Schema({
     occupied: { type: Number, reuqired: true },
     width: { type: Number, reuqired: true },
     height: { type: Number, reuqired: true },
-    owner: { type: String, required: true }
+    owner: { type: String, required: true },
+    slots: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Slot"
+    }]
 });
 
 module.exports = mongoose.model("Garden", gardenSchema);
