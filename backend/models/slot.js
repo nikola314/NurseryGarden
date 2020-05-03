@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const slotSchema = mongoose.Schema({
-    product: { type: mongoose.Schema.Types.ObjectId, default: null },
+    product: { type: mongoose.Schema.Types.ObjectId, ref: "Product", default: null },
     timePlanted: { type: Date, required: true },
     positionX: { type: Number, required: true },
     positionY: { type: Number, required: true },
@@ -10,6 +10,5 @@ const slotSchema = mongoose.Schema({
         ref: "Garden"
     }
 });
-
 
 module.exports = mongoose.model("Slot", slotSchema);

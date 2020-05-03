@@ -34,7 +34,9 @@
                             <mat-card-content>
                                 <div *ngIf="slot.timePlanted!=null">
                                     <!-- Show progress -->
-                                    <mat-spinner value="69"></mat-spinner>
+                                    <mat-progress-bar mode="determinate" value="69"></mat-progress-bar>
+                                    time planted: {{parseISOString(slot.timePlanted).getTime()}}<br> current time: {{getCurrentTime()}}<br> time to grow: {{slot.product.time}}<br> current - planted: {{getDiff(getCurrentTime(),parseISOString(slot.timePlanted).getTime())}}
+
                                 </div>
                                 <div *ngIf="slot.timePlanted==null">
                                     <!-- Show planting menu -->

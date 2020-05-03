@@ -75,15 +75,16 @@ export class GardenDashboardComponent implements OnInit, OnDestroy {
   }
 
   getImagePath(slot) {
+    // TODO: not working well
     let order = 0;
     if (slot.timePlanted != null) {
       const DAY = 24 * 3600 * 1000;
       var timePlanted = parseISOString(slot.timePlanted).getTime();
-      var finishDate = timePlanted + slot.timeToGrow;
+      var finishDate = timePlanted + slot.product.time;
       finishDate += DAY;
       var currentDate = new Date().getTime();
-      var divider = slot.timeToGrow / 2;
-      if (finishDate > currentDate) order = 3;
+      var divider = slot.product.time / 2;
+      if (currentDate > finishDate) order = 3;
       else if (timePlanted + divider < currentDate) order = 2;
       else order = 1;
     }
@@ -92,5 +93,18 @@ export class GardenDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
+  }
+
+  // testing
+  getCurrentTime() {
+    return new Date().getTime();
+  }
+
+  getDiff(d1, d2) {
+    return d1 - d2;
+  }
+  parseISOString(s) {
+    var b = s.split(/\D+/);
+    return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
   }
 }

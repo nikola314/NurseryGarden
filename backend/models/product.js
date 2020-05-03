@@ -4,7 +4,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 const productSchema = mongoose.Schema({
     name: { type: String, required: true },
     isPlant: { type: Boolean, required: true },
-    manufacturer: { type: String, required: true },
+    manufacturer: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     time: { type: Number, required: true },
 });
 

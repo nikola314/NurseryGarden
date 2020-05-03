@@ -13,7 +13,6 @@ export interface Garden {
 }
 
 export interface Slot {
-  timeToGrow: number; //in ms
   timePlanted: Date;
   positionX: number;
   positionY: number;

@@ -1,5 +1,6 @@
 const Garden = require("../models/garden");
 const Slot = require("../models/slot");
+const Product = require("../models/product")
 const mongoose = require("mongoose");
 
 exports.createGarden = (req, res, next) => {
@@ -95,8 +96,15 @@ exports.getGardens = (req, res, next) => {
         });
 };
 
+
 exports.getGarden = (req, res, next) => {
-    Garden.findById(req.params.id).populate('slots')
+    Garden.findById(req.params.id).populate({
+            path: 'slots',
+            populate: {
+                path: 'product',
+                model: 'Product'
+            }
+        })
         .then((garden) => {
             if (garden.owner != req.userData.userId) {
                 res.status(401).json({ message: "Not authorized!" });
@@ -108,6 +116,7 @@ exports.getGarden = (req, res, next) => {
             }
         })
         .catch((err) => {
+            console.log(err)
             res.status(500).json({
                 message: "Fetching gardens failed!",
             });
