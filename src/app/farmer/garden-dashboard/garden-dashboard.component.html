@@ -29,14 +29,14 @@
             <mat-grid-list [cols]="garden.width" rowHeight="100px">
                 <mat-grid-tile *ngFor="let slot of garden.slots" [colspan]="1" [rowspan]="1">
                     <img [src]="getImagePath(slot)" [mdePopoverTriggerFor]="appPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="hover" alt="">
-                    <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+                    <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
                         <mat-card style="max-width: 200px; min-width:100px;">
                             <mat-card-content>
                                 <div *ngIf="slot.timePlanted!=null">
                                     <!-- Show progress -->
-                                    <mat-progress-bar mode="determinate" value="69"></mat-progress-bar>
+                                    <mat-progress-bar mode="determinate" [value]="calculateProgress(slot)"></mat-progress-bar>
                                     time planted: {{parseISOString(slot.timePlanted).getTime()}}<br> current time: {{getCurrentTime()}}<br> time to grow: {{slot.product.time}}<br> current - planted: {{getDiff(getCurrentTime(),parseISOString(slot.timePlanted).getTime())}}
-
+                                    <button (click)="popupButtonTest()">Ok</button>
                                 </div>
                                 <div *ngIf="slot.timePlanted==null">
                                     <!-- Show planting menu -->

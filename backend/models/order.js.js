@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
 
-var SingleOrderSchema = new Schema({
-    product: { type: String, required: true },
-    count: { type: Number, default: 0 }
-});
-
 const orderSchema = mongoose.Schema({
-    orders: [SingleOrderSchema],
+    product: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
+    count: { type: Number, default: 0 },
     isDelivered: { type: Boolean, required: true, default: false },
-    garden: { type: String, required: true }
+    isPickedUp: { type: Boolean, required: true, default: false }, // if it is in transport
+    garden: { type: mongoose.Schema.Types.ObjectId, ref: "Garden", required: true },
+    timestamp: { type: Date, required: true }
 });
 
 module.exports = mongoose.model("Order", orderSchema);

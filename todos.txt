@@ -23,6 +23,8 @@
   + Popover on every plant
   - Applying products on plants
   - Planting plants
+  - Taking out finished plants and setting timePlanted to that time and plant to null
+  + Add condition if plant==null && current time-slot.timePlanted > DAY
   - Display garden name/location
   + plant images ( progress dependent )
   - Notification (garden needs attention)
@@ -35,6 +37,7 @@
   + Product model
   - Product service
   + Order model
+  + Fix ExpressionChangedAfterItHasBeenCheckedError -> https://stackoverflow.com/questions/39787038/how-to-manage-angular2-expression-has-changed-after-it-was-checked-exception-w
 
 - Modify cron job to run more often
 
