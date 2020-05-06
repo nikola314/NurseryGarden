@@ -21,15 +21,18 @@
   + Inc/Dec temperature and water
   + Plan grid
   + Popover on every plant
-  - Applying products on plants
-  - Planting plants
-  - Taking out finished plants and setting timePlanted to that time and plant to null
+ / - Applying products on plants
+ / - Planting plants
+/  - Taking out finished plants and setting timePlanted to that time and plant to null
+-- updating slots
+  - Sorting and filtering in warehouse
+  - Orders tab in garden
   + Add condition if plant==null && current time-slot.timePlanted > DAY
   - Display garden name/location
   + plant images ( progress dependent )
   - Notification (garden needs attention)
   + Bind (populate) product to slot so product.time is accessible for progress
-  - Calculate plant progress
+  + Calculate plant progress
   - Create some products, orders, companies to test
   + Slot model
   + Nursery garden model
@@ -40,6 +43,9 @@
   + Fix ExpressionChangedAfterItHasBeenCheckedError -> https://stackoverflow.com/questions/39787038/how-to-manage-angular2-expression-has-changed-after-it-was-checked-exception-w
 
 - Modify cron job to run more often
+
+- Delivery - transfer order to warehouse
+        - Add to garden storage (warehouse) on delivery
 
 - Online store
   - Sort

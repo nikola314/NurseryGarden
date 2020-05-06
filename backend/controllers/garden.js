@@ -1,6 +1,6 @@
 const Garden = require("../models/garden");
 const Slot = require("../models/slot");
-const Product = require("../models/product")
+const Product = require("../models/product");
 const mongoose = require("mongoose");
 
 exports.createGarden = (req, res, next) => {
@@ -14,16 +14,17 @@ exports.createGarden = (req, res, next) => {
         temperature: 18,
         water: 200,
         owner: userId,
-        slots: []
+        slots: [],
     });
     let slots = [];
     for (let i = 0; i < req.body.height; i++) {
         for (let j = 0; j < req.body.width; j++) {
             var slot = new Slot({
+                product: null,
                 positionX: j,
                 positionY: i,
                 timePlanted: null,
-                garden: mongoose.Types.ObjectId(garden._id)
+                garden: mongoose.Types.ObjectId(garden._id),
             });
             slots.push(slot);
             garden.slots.push(slot);
@@ -52,7 +53,6 @@ exports.createGarden = (req, res, next) => {
             });
             console.log(err);
         });
-
 };
 
 exports.updateGarden = (req, res, next) => {
@@ -60,7 +60,8 @@ exports.updateGarden = (req, res, next) => {
         if (garden.owner != req.userData.userId) {
             res.status(401).json({ message: "Not authorized!" });
         } else {
-            garden.temperature = req.body.temperature;
+            (garden.warehouse = req.body.warehouse),
+            (garden.temperature = req.body.temperature);
             garden.occupied = req.body.occupied;
             garden.water = req.body.water;
             garden
@@ -80,6 +81,38 @@ exports.updateGarden = (req, res, next) => {
     });
 };
 
+exports.updateSlot = (req, res, next) => {
+    let retSlot;
+    Slot.findById(req.params.id).then((slot) => {
+        slot.product = mongoose.Types.ObjectId(req.body.product);
+        if (slot.timePlanted == null) {
+            slot.timePlanted = req.body.timePlanted;
+        }
+        console.log(slot);
+        retSlot = slot;
+        slot
+            .save()
+            .then((result) => {
+                Product.findById(retSlot.product).then((prd) => {
+                    retSlot.product = prd;
+                    console.log(prd);
+                    console.log("YEP");
+                    console.log(retSlot);
+                    res.status(201).json({
+                        message: "Slot updated successfully",
+                        slot: retSlot,
+                    });
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                    message: "Updating failed!",
+                });
+            });
+    });
+};
+
 exports.getGardens = (req, res, next) => {
     const userId = req.userData.userId;
     Garden.find({ owner: userId })
@@ -96,15 +129,16 @@ exports.getGardens = (req, res, next) => {
         });
 };
 
-
 exports.getGarden = (req, res, next) => {
-    Garden.findById(req.params.id).populate({
-            path: 'slots',
+    Garden.findById(req.params.id)
+        .populate({
+            path: "slots",
             populate: {
-                path: 'product',
-                model: 'Product'
-            }
+                path: "product",
+                model: "Product",
+            },
         })
+        .populate("warehouse.product")
         .then((garden) => {
             if (garden.owner != req.userData.userId) {
                 res.status(401).json({ message: "Not authorized!" });
@@ -116,7 +150,7 @@ exports.getGarden = (req, res, next) => {
             }
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
             res.status(500).json({
                 message: "Fetching gardens failed!",
             });

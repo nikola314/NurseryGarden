@@ -1,3 +1,5 @@
+import { Product } from '../product/product.model';
+
 // different model for frontend and for backend
 export interface Garden {
   id: string;
@@ -10,10 +12,17 @@ export interface Garden {
   height: number;
   empty: number;
   slots: [Slot];
+  warehouse: [
+    {
+      product: Product;
+      count: number;
+    }
+  ];
 }
 
 export interface Slot {
-  timePlanted: Date;
+  _id: string;
+  timePlanted: string;
   positionX: number;
   positionY: number;
   product: any;
@@ -30,4 +39,10 @@ export interface GardenBackendModel {
   width: number;
   owner: string;
   slots: [Slot];
+  warehouse: [
+    {
+      product: Product;
+      count: number;
+    }
+  ];
 }

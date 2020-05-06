@@ -35,7 +35,6 @@ function sendWarnings() {
     }).then((gardens) => {
         gardens.forEach((garden) => {
             User.findById(garden.owner).then((user) => {
-                console.log(user);
                 console.log("Sending mail to: " + user.email);
                 if (!user || !user.email) return;
                 let mailOptions = {

@@ -11,8 +11,12 @@ const gardenSchema = mongoose.Schema({
     owner: { type: String, required: true },
     slots: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Slot"
-    }]
+        ref: "Slot",
+    }, ],
+    warehouse: [{
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        count: { type: Number, required: true, default: 0 },
+    }, ],
 });
 
 module.exports = mongoose.model("Garden", gardenSchema);

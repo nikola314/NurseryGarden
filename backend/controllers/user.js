@@ -94,7 +94,6 @@ exports.changePassword = (req, res, next) => {
             bcrypt.hash(req.body.newPassword, 10).then((hash) => {
                 User.updateOne({ username: req.userData.username }, { password: hash }).then((result) => {
                     if (result.n > 0) {
-                        console.log("changed successfuly");
                         res.status(200).json({ message: "Password changed successfully!" });
                     } else {
                         res.status(401).json({ message: "Not authorized!" });

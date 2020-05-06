@@ -52,7 +52,6 @@ export class AuthService {
   }
 
   changePassword(passData) {
-    console.log(JSON.stringify(passData));
     return this.http.post(BACKEND_URL + 'changePassword', passData).subscribe(
       (response) => {
         this.logout();

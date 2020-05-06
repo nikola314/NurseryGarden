@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { GardenService } from '../garden.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { GardenBackendModel, Garden } from '../garden.model';
+import { GardenBackendModel, Garden, Slot } from '../garden.model';
 import { parseISOString } from '../../date';
 
 @Component({
@@ -23,6 +23,14 @@ export class GardenDashboardComponent
   userId: string;
   garden: Garden;
   currentDate: Date = new Date();
+  warehouseDisplayedColumns: string[] = [
+    'product.name',
+    'count',
+    'product.isPlant',
+  ];
+  popoverPlantDisplayedColumns: string[] = ['product.name', 'count'];
+
+  plantArray;
 
   public SLOT_STATES = {
     EMPTY: 0,
@@ -61,11 +69,16 @@ export class GardenDashboardComponent
     this.cdRef.detectChanges();
   }
 
+  getPlantsInWarehouse() {
+    return this.garden.warehouse.filter(function (value) {
+      return value.product.isPlant && value.count > 0;
+    });
+  }
+
   public getGarden() {
     this.gardensService
       .getGarden(this.gardenId)
       .subscribe((data: { message: string; garden: GardenBackendModel }) => {
-        console.log(data.garden.temperature);
         this.gridSettings.cols = data.garden.width;
         this.garden = {
           ...data.garden,
@@ -79,7 +92,7 @@ export class GardenDashboardComponent
   addWater(cap) {
     this.garden.water += cap;
     this.gardensService
-      .updateGarden(this.gardenId, this.garden)
+      .updateGarden(this.garden)
       .subscribe((result: { message: string; garden: GardenBackendModel }) => {
         this.garden.water = result.garden.water;
       });
@@ -88,13 +101,14 @@ export class GardenDashboardComponent
   addTemperature(cap) {
     this.garden.temperature += cap;
     this.gardensService
-      .updateGarden(this.gardenId, this.garden)
+      .updateGarden(this.garden)
       .subscribe((result: { message: string; garden: GardenBackendModel }) => {
         this.garden.temperature = result.garden.temperature;
       });
   }
 
   calculateProgress(slot) {
+    console.log(JSON.stringify(slot));
     var input = this.currentDate.getTime();
     var min = parseISOString(slot.timePlanted).getTime();
     var range = slot.product.time;
@@ -130,6 +144,31 @@ export class GardenDashboardComponent
     }
 
     return '../../../assets/images/slot' + state + '.png';
+  }
+
+  plant(slot: Slot, row: { product: any; count: number }) {
+    slot.timePlanted = new Date().toISOString();
+    slot.product = row.product._id;
+    // TODO: slotService.updateSlot(slot)
+    let plant = this.garden.warehouse.find(
+      (el) => el.product._id == row.product._id
+    );
+    plant.count--;
+    this.garden.occupied++;
+    this.gardensService
+      .updateSlot(slot)
+      .subscribe((result: { message: string; slot: Slot }) => {
+        let sl = this.garden.slots.find((el) => el._id == slot._id);
+        console.log('IDE:');
+        console.log(JSON.stringify(slot));
+        sl.product = slot.product;
+        sl.timePlanted = slot.timePlanted;
+      });
+    this.gardensService
+      .updateGarden(this.garden)
+      .subscribe((result: { message: string; garden: GardenBackendModel }) => {
+        this.getGarden();
+      });
   }
 
   ngOnDestroy() {

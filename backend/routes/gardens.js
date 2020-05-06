@@ -16,4 +16,6 @@ router.get("/:id", checkAuth, gardenController.getGarden);
 
 router.delete("/:id", checkAuth, gardenController.deleteGarden);
 
+router.put("/slot/:id", checkAuth, gardenController.updateSlot);
+
 module.exports = router;

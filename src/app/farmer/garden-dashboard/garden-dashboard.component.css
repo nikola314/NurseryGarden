@@ -36,3 +36,8 @@ mat-list {
 img {
     height: 100%;
 }
+
+table {
+    width: 100%;
+    margin: auto;
+}

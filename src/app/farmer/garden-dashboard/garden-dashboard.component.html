@@ -32,7 +32,7 @@
                     <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
                         <mat-card style="max-width: 200px; min-width:100px;">
                             <mat-card-content>
-                                <div *ngIf="slot.timePlanted!=null">
+                                <div *ngIf="slot.timePlanted!=null && slot.product!=null">
                                     <!-- Show progress -->
                                     <mat-progress-bar mode="determinate" [value]="calculateProgress(slot)"></mat-progress-bar>
                                     time planted: {{parseISOString(slot.timePlanted).getTime()}}<br> current time: {{getCurrentTime()}}<br> time to grow: {{slot.product.time}}<br> current - planted: {{getDiff(getCurrentTime(),parseISOString(slot.timePlanted).getTime())}}
@@ -40,21 +40,54 @@
                                 </div>
                                 <div *ngIf="slot.timePlanted==null">
                                     <!-- Show planting menu -->
+                                    <p>Choose a plant from your warehouse:</p>
+                                    <table mat-table [dataSource]="getPlantsInWarehouse()" class="mat-elevation-z1">
+
+                                        <ng-container matColumnDef="product.name">
+                                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="count">
+                                            <th mat-header-cell *matHeaderCellDef> Count </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+                                        </ng-container>
+
+
+                                        <tr mat-header-row *matHeaderRowDef="popoverPlantDisplayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: popoverPlantDisplayedColumns;" (click)="plant(slot,row)" style="cursor: pointer;"></tr>
+                                    </table>
                                     <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
                                 </div>
                             </mat-card-content>
                         </mat-card>
                     </mde-popover>
-
-
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
-
     </mat-tab>
-    <mat-tab label="Storage">
-        <div>
-            <p>Content</p>
-        </div>
+
+    <!-- Warehouse tab -->
+    <mat-tab label="Warehouse">
+        <table mat-table [dataSource]="garden.warehouse" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="product.name">
+                <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef> Count </th>
+                <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="product.isPlant">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.isPlant? 'Plant': 'Suplement'}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="warehouseDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: warehouseDisplayedColumns;"></tr>
+        </table>
     </mat-tab>
 </mat-tab-group>

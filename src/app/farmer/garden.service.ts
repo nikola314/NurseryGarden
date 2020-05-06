@@ -1,4 +1,4 @@
-import { Garden, GardenBackendModel } from './garden.model';
+import { Garden, GardenBackendModel, Slot } from './garden.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -35,6 +35,7 @@ export class GardenService {
                 height: garden.height,
                 id: garden._id,
                 slots: garden.slots,
+                warehouse: garden.warehouse,
               };
             }),
           };
@@ -66,15 +67,35 @@ export class GardenService {
     );
   }
 
-  updateGarden(id: string, garden: Garden) {
-    let updateData = {
-      temperature: garden.temperature,
-      occupied: garden.occupied,
-      water: garden.water,
-    };
+  // updateGardenWaterAndTemperature(id: string, garden: Garden) {
+  //   // TODO: change to send and recieve +/- 1 instead of value
+  //   let updateData = {
+  //     temperature: garden.temperature,
+  //     occupied: garden.occupied,
+  //     water: garden.water,
+  //   };
+  //   return this.http.put(BACKEND_URL + id, updateData);
+  // }
 
-    return this.http.put(BACKEND_URL + id, updateData);
+  updateGarden(garden: Garden) {
+    let updateData = {
+      occupied: garden.occupied,
+      warehouse: garden.warehouse,
+      water: garden.water,
+      temperature: garden.temperature,
+    };
+    return this.http.put(BACKEND_URL + garden.id, updateData);
   }
+
+  updateSlot(slot: Slot) {
+    console.log(JSON.stringify(slot));
+    let updateData = {
+      timePlanted: slot.timePlanted,
+      product: slot.product,
+    };
+    return this.http.put(BACKEND_URL + 'slot/' + slot._id, updateData);
+  }
+
   //  ----------------------------------------------------------------------------------------------------------------------
 
   deletePost(postId: string) {
