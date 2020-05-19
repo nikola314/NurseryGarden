@@ -6,7 +6,7 @@
   + Prettier navigation
   + Change password
   - Capatcha
-  - Dont allow login if not approved
+  + Dont allow login if not approved
   - Admin
     - Approve users
     - Create or delete users
@@ -21,8 +21,8 @@
   + Inc/Dec temperature and water
   + Plan grid
   + Popover on every plant
- / - Applying products on plants
- / - Planting plants
+  + Applying products on plants
+  + Planting plants
 /  - Taking out finished plants and setting timePlanted to that time and plant to null
 -- updating slots
   - Sorting and filtering in warehouse
@@ -55,4 +55,3 @@
 
 + Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
-mongo "mongodb+srv://cluster0-unpq0.mongodb.net/test"  --username pia

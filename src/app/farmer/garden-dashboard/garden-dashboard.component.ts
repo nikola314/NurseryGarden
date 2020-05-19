@@ -69,6 +69,12 @@ export class GardenDashboardComponent
     this.cdRef.detectChanges();
   }
 
+  getSuplementsInWarehouse() {
+    return this.garden.warehouse.filter(function (value) {
+      return !value.product.isPlant && value.count > 0;
+    });
+  }
+
   getPlantsInWarehouse() {
     return this.garden.warehouse.filter(function (value) {
       return value.product.isPlant && value.count > 0;
@@ -108,7 +114,6 @@ export class GardenDashboardComponent
   }
 
   calculateProgress(slot) {
-    console.log(JSON.stringify(slot));
     var input = this.currentDate.getTime();
     var min = parseISOString(slot.timePlanted).getTime();
     var range = slot.product.time;
@@ -146,10 +151,37 @@ export class GardenDashboardComponent
     return '../../../assets/images/slot' + state + '.png';
   }
 
+  applySuplement(slot: Slot, row: { product: any; count: number }) {
+    let timePlanted = parseISOString(slot.timePlanted).getTime();
+    let newTime = timePlanted - row.product.time;
+    slot.timePlanted = new Date(newTime).toISOString();
+    slot.product = slot.product._id;
+    console.log('old time: ' + timePlanted);
+    console.log('new time: ' + newTime);
+
+    let suplement = this.garden.warehouse.find(
+      (el) => el.product._id == row.product._id
+    );
+    suplement.count--;
+    this.gardensService
+      .updateSlot(slot)
+      .subscribe((result: { message: string; slot: Slot }) => {
+        let sl = this.garden.slots.find((el) => el._id == slot._id);
+        sl.product = slot.product;
+        sl.timePlanted = slot.timePlanted;
+        console.log('got here');
+        console.log(parseISOString(slot.timePlanted).getTime());
+      });
+    this.gardensService
+      .updateGarden(this.garden)
+      .subscribe((result: { message: string; garden: GardenBackendModel }) => {
+        this.getGarden();
+      });
+  }
+
   plant(slot: Slot, row: { product: any; count: number }) {
     slot.timePlanted = new Date().toISOString();
     slot.product = row.product._id;
-    // TODO: slotService.updateSlot(slot)
     let plant = this.garden.warehouse.find(
       (el) => el.product._id == row.product._id
     );
@@ -159,8 +191,6 @@ export class GardenDashboardComponent
       .updateSlot(slot)
       .subscribe((result: { message: string; slot: Slot }) => {
         let sl = this.garden.slots.find((el) => el._id == slot._id);
-        console.log('IDE:');
-        console.log(JSON.stringify(slot));
         sl.product = slot.product;
         sl.timePlanted = slot.timePlanted;
       });
@@ -183,6 +213,7 @@ export class GardenDashboardComponent
   getDiff(d1, d2) {
     return d1 - d2;
   }
+
   parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));

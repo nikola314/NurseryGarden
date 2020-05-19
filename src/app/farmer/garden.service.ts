@@ -88,7 +88,6 @@ export class GardenService {
   }
 
   updateSlot(slot: Slot) {
-    console.log(JSON.stringify(slot));
     let updateData = {
       timePlanted: slot.timePlanted,
       product: slot.product,

@@ -85,19 +85,15 @@ exports.updateSlot = (req, res, next) => {
     let retSlot;
     Slot.findById(req.params.id).then((slot) => {
         slot.product = mongoose.Types.ObjectId(req.body.product);
-        if (slot.timePlanted == null) {
-            slot.timePlanted = req.body.timePlanted;
-        }
-        console.log(slot);
+        // if (slot.timePlanted == null) {
+        slot.timePlanted = req.body.timePlanted;
+        // }
         retSlot = slot;
         slot
             .save()
             .then((result) => {
                 Product.findById(retSlot.product).then((prd) => {
                     retSlot.product = prd;
-                    console.log(prd);
-                    console.log("YEP");
-                    console.log(retSlot);
                     res.status(201).json({
                         message: "Slot updated successfully",
                         slot: retSlot,

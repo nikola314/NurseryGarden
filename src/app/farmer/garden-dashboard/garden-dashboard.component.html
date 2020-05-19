@@ -36,7 +36,29 @@
                                     <!-- Show progress -->
                                     <mat-progress-bar mode="determinate" [value]="calculateProgress(slot)"></mat-progress-bar>
                                     time planted: {{parseISOString(slot.timePlanted).getTime()}}<br> current time: {{getCurrentTime()}}<br> time to grow: {{slot.product.time}}<br> current - planted: {{getDiff(getCurrentTime(),parseISOString(slot.timePlanted).getTime())}}
-                                    <button (click)="popupButtonTest()">Ok</button>
+                                    <br>
+                                    <div *ngIf="calculateProgress(slot) >= 100">
+                                        <button (click)="popupButtonTest()">Take out</button>
+                                    </div>
+                                    <div *ngIf="calculateProgress(slot) < 100">
+                                        <p>Choose a suplement you want to apply:</p>
+                                        <table mat-table [dataSource]="getSuplementsInWarehouse()" class="mat-elevation-z1">
+
+                                            <ng-container matColumnDef="product.name">
+                                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="count">
+                                                <th mat-header-cell *matHeaderCellDef> Count </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+                                            </ng-container>
+
+
+                                            <tr mat-header-row *matHeaderRowDef="popoverPlantDisplayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: popoverPlantDisplayedColumns;" (click)="applySuplement(slot,row)" style="cursor: pointer;"></tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div *ngIf="slot.timePlanted==null">
                                     <!-- Show planting menu -->
@@ -57,7 +79,6 @@
                                         <tr mat-header-row *matHeaderRowDef="popoverPlantDisplayedColumns"></tr>
                                         <tr mat-row *matRowDef="let row; columns: popoverPlantDisplayedColumns;" (click)="plant(slot,row)" style="cursor: pointer;"></tr>
                                     </table>
-                                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
                                 </div>
                             </mat-card-content>
                         </mat-card>

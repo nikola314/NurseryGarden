@@ -52,6 +52,11 @@ exports.login = (req, res, next) => {
                     message: "Invalid authentication credentials!",
                 });
             }
+            if (!fetchedUser.approved) {
+                return res.status("401").json({
+                    message: "Your account request is not approved yet!",
+                });
+            }
             const token = jwt.sign({
                     username: fetchedUser.username,
                     userId: fetchedUser._id,
