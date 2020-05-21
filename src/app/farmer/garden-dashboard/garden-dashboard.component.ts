@@ -4,6 +4,7 @@ import {
   OnDestroy,
   AfterViewChecked,
   ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { GardenService } from '../garden.service';
@@ -11,6 +12,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { GardenBackendModel, Garden, Slot } from '../garden.model';
 import { parseISOString } from '../../date';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-garden-dashboard',
@@ -23,14 +26,13 @@ export class GardenDashboardComponent
   userId: string;
   garden: Garden;
   currentDate: Date = new Date();
-  warehouseDisplayedColumns: string[] = [
-    'product.name',
-    'count',
-    'product.isPlant',
-  ];
+  warehouseDisplayedColumns: string[] = ['name', 'count', 'isPlant'];
+  ordersDisplayedColumns: string[] = ['product.name', 'count', 'isPickedUp'];
   popoverPlantDisplayedColumns: string[] = ['product.name', 'count'];
 
   plantArray;
+  warehouseDataSource: MatTableDataSource<any>;
+  ordersDataSource = [];
 
   public SLOT_STATES = {
     EMPTY: 0,
@@ -43,6 +45,8 @@ export class GardenDashboardComponent
   gridSettings = {
     cols: 3,
   };
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private authService: AuthService,
@@ -60,6 +64,7 @@ export class GardenDashboardComponent
     this.route.paramMap.subscribe((paramMap) => {
       this.gardenId = paramMap.get('gardenId');
       this.getGarden();
+
       // setInterval(this.getGarden.bind(this), 10000);
     });
   }
@@ -92,6 +97,16 @@ export class GardenDashboardComponent
           empty:
             +data.garden.width * +data.garden.height - data.garden.occupied,
         };
+        this.warehouseDataSource = new MatTableDataSource(
+          this.garden.warehouse.map((x) => {
+            return {
+              name: x.product.name,
+              count: x.count,
+              isPlant: x.product.isPlant ? 'Plant' : 'Suplement',
+            };
+          })
+        );
+        this.warehouseDataSource.sort = this.sort;
       });
   }
 
@@ -119,6 +134,15 @@ export class GardenDashboardComponent
     var range = slot.product.time;
     var correctedStartValue = input - min;
     return (correctedStartValue * 100) / range;
+  }
+
+  calculateCooldownProgress(slot) {
+    if (this.getState(slot) != this.SLOT_STATES.COOLDOWN) return 0;
+    var min = parseISOString(slot.timePlanted).getTime();
+    const DAY = 1000 * 60 * 60 * 24;
+    var input = this.currentDate.getTime();
+    var correctedStartValue = input - min;
+    return (correctedStartValue * 100) / DAY;
   }
 
   getState(slot) {
@@ -180,7 +204,7 @@ export class GardenDashboardComponent
   }
 
   plant(slot: Slot, row: { product: any; count: number }) {
-    slot.timePlanted = new Date().toISOString();
+    slot.timePlanted = this.currentDate.toISOString();
     slot.product = row.product._id;
     let plant = this.garden.warehouse.find(
       (el) => el.product._id == row.product._id
@@ -199,6 +223,34 @@ export class GardenDashboardComponent
       .subscribe((result: { message: string; garden: GardenBackendModel }) => {
         this.getGarden();
       });
+  }
+
+  takeOutFinishedPlant(slot) {
+    slot.product = null;
+    slot.timePlanted = this.currentDate.toISOString();
+    this.gardensService
+      .updateSlot(slot)
+      .subscribe((result: { message: string; slot: Slot }) => {
+        let sl = this.garden.slots.find((el) => el._id == slot._id);
+        sl.product = slot.product;
+        sl.timePlanted = slot.timePlanted;
+      });
+    // todo: handle number of occupied slots after finished digging
+  }
+
+  isCooldownOver(slot) {
+    if (slot.product != null || slot.timePlanted == null) return false;
+    var timePlanted = parseISOString(slot.timePlanted).getTime();
+    const DAY = 1000 * 60 * 60 * 24;
+    if (this.currentDate.getTime() - timePlanted > DAY) {
+      return true;
+    }
+    return false;
+  }
+
+  applyWarehouseFilter($event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.warehouseDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy() {

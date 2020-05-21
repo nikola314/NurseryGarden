@@ -29,7 +29,7 @@
             <mat-grid-list [cols]="garden.width" rowHeight="100px">
                 <mat-grid-tile *ngFor="let slot of garden.slots" [colspan]="1" [rowspan]="1">
                     <img [src]="getImagePath(slot)" [mdePopoverTriggerFor]="appPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="hover" alt="">
-                    <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false">
+                    <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false" mdePopoverLeaveDelay="0">
                         <mat-card style="max-width: 200px; min-width:100px;">
                             <mat-card-content>
                                 <div *ngIf="slot.timePlanted!=null && slot.product!=null">
@@ -38,7 +38,7 @@
                                     time planted: {{parseISOString(slot.timePlanted).getTime()}}<br> current time: {{getCurrentTime()}}<br> time to grow: {{slot.product.time}}<br> current - planted: {{getDiff(getCurrentTime(),parseISOString(slot.timePlanted).getTime())}}
                                     <br>
                                     <div *ngIf="calculateProgress(slot) >= 100">
-                                        <button (click)="popupButtonTest()">Take out</button>
+                                        <button (click)="takeOutFinishedPlant(slot)">Take out</button>
                                     </div>
                                     <div *ngIf="calculateProgress(slot) < 100">
                                         <p>Choose a suplement you want to apply:</p>
@@ -60,7 +60,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div *ngIf="slot.timePlanted==null">
+                                <div *ngIf="slot.timePlanted==null || isCooldownOver(slot)">
                                     <!-- Show planting menu -->
                                     <p>Choose a plant from your warehouse:</p>
                                     <table mat-table [dataSource]="getPlantsInWarehouse()" class="mat-elevation-z1">
@@ -75,11 +75,18 @@
                                             <td mat-cell *matCellDef="let element"> {{element.count}} </td>
                                         </ng-container>
 
-
                                         <tr mat-header-row *matHeaderRowDef="popoverPlantDisplayedColumns"></tr>
                                         <tr mat-row *matRowDef="let row; columns: popoverPlantDisplayedColumns;" (click)="plant(slot,row)" style="cursor: pointer;"></tr>
                                     </table>
                                 </div>
+
+                                <div *ngIf="getState(slot)==SLOT_STATES.COOLDOWN">
+                                    <!-- Show cooldown progress -->
+                                    <mat-progress-bar mode="determinate" [value]="calculateCooldownProgress(slot)"></mat-progress-bar>
+                                    <p>Digging</p>
+                                </div>
+
+
                             </mat-card-content>
                         </mat-card>
                     </mde-popover>
@@ -90,25 +97,57 @@
 
     <!-- Warehouse tab -->
     <mat-tab label="Warehouse">
-        <table mat-table [dataSource]="garden.warehouse" class="mat-elevation-z8">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyWarehouseFilter($event)" placeholder="Filter..">
+        </mat-form-field>
+        <table mat-table [dataSource]="warehouseDataSource" matSort class="mat-elevation-z8">
 
-            <ng-container matColumnDef="product.name">
-                <th mat-header-cell *matHeaderCellDef> Product Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="count">
-                <th mat-header-cell *matHeaderCellDef> Count </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Count </th>
                 <td mat-cell *matCellDef="let element"> {{element.count}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="product.isPlant">
-                <th mat-header-cell *matHeaderCellDef> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.product.isPlant? 'Plant': 'Suplement'}} </td>
+            <ng-container matColumnDef="isPlant">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.isPlant}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="warehouseDisplayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: warehouseDisplayedColumns;"></tr>
         </table>
     </mat-tab>
+
+
+    <!-- Orders tab -->
+    <mat-tab label="Orders">
+
+        <table mat-table [dataSource]="ordersDataSource" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="product.name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Count </th>
+                <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="isPickedUp">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Picked up </th>
+                <td mat-cell *matCellDef="let element"> {{element.isPickedUp? "Yes":"No"}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="ordersDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: ordersDisplayedColumns;"></tr>
+        </table>
+    </mat-tab>
+
+
 </mat-tab-group>
