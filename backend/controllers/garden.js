@@ -1,6 +1,7 @@
 const Garden = require("../models/garden");
 const Slot = require("../models/slot");
 const Product = require("../models/product");
+const Order = require("../models/order");
 const mongoose = require("mongoose");
 
 exports.createGarden = (req, res, next) => {
@@ -15,6 +16,7 @@ exports.createGarden = (req, res, next) => {
         water: 200,
         owner: userId,
         slots: [],
+        orders: [],
     });
     let slots = [];
     for (let i = 0; i < req.body.height; i++) {
@@ -135,6 +137,14 @@ exports.getGarden = (req, res, next) => {
             },
         })
         .populate("warehouse.product")
+        .populate("orders")
+        .populate({
+            path: "orders",
+            populate: {
+                path: "product",
+                model: "Product"
+            }
+        })
         .then((garden) => {
             if (garden.owner != req.userData.userId) {
                 res.status(401).json({ message: "Not authorized!" });

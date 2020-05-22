@@ -1,4 +1,5 @@
 import { Product } from '../product/product.model';
+import { Order } from '../product/order.model';
 
 // different model for frontend and for backend
 export interface Garden {
@@ -18,6 +19,7 @@ export interface Garden {
       count: number;
     }
   ];
+  orders: [Order];
 }
 
 export interface Slot {
@@ -45,4 +47,5 @@ export interface GardenBackendModel {
       count: number;
     }
   ];
+  orders: [Order];
 }

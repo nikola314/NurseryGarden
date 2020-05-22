@@ -17,6 +17,10 @@ const gardenSchema = mongoose.Schema({
         product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
         count: { type: Number, required: true, default: 0 },
     }, ],
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order"
+    }]
 });
 
 module.exports = mongoose.model("Garden", gardenSchema);

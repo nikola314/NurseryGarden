@@ -36,6 +36,7 @@ export class GardenService {
                 id: garden._id,
                 slots: garden.slots,
                 warehouse: garden.warehouse,
+                orders: garden.orders,
               };
             }),
           };

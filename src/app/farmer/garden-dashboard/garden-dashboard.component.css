@@ -7,6 +7,24 @@
     padding: 2rem 0;
 }
 
+.pink-back {
+    background-color: #ff4081;
+}
+
+.garden-header-item {
+    display: inline-block;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.garden-header-item p {
+    margin: 1rem;
+    color: white;
+    font-style: italic;
+}
+
 mat-list {
     width: 100%;
     float: right;

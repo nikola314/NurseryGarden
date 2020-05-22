@@ -14,6 +14,7 @@ import { GardenBackendModel, Garden, Slot } from '../garden.model';
 import { parseISOString } from '../../date';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Order } from '../../product/order.model';
 
 @Component({
   selector: 'app-garden-dashboard',
@@ -32,7 +33,7 @@ export class GardenDashboardComponent
 
   plantArray;
   warehouseDataSource: MatTableDataSource<any>;
-  ordersDataSource = [];
+  ordersDataSource: MatTableDataSource<any>;
 
   public SLOT_STATES = {
     EMPTY: 0,
@@ -97,6 +98,7 @@ export class GardenDashboardComponent
           empty:
             +data.garden.width * +data.garden.height - data.garden.occupied,
         };
+        // Warehouse table
         this.warehouseDataSource = new MatTableDataSource(
           this.garden.warehouse.map((x) => {
             return {
@@ -107,6 +109,17 @@ export class GardenDashboardComponent
           })
         );
         this.warehouseDataSource.sort = this.sort;
+
+        // Orders table
+        this.ordersDataSource = new MatTableDataSource(
+          this.garden.orders.map((x) => {
+            return {
+              name: x.product.name,
+              isPickedUp: x.isPickedUp,
+              count: x.count,
+            };
+          })
+        );
       });
   }
 
