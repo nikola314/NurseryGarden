@@ -22,6 +22,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
     'email',
     'isCompany',
     'location',
+    'approved',
   ];
 
   constructor(public authService: AuthService) {}

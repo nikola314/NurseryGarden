@@ -9,6 +9,7 @@
   + Dont allow login if not approved
   - Admin
     + User list
+    - Generalized popup for adding and modifying users
     - Approve users
     - Create or delete users
 

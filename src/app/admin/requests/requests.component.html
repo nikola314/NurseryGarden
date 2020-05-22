@@ -8,32 +8,55 @@
 
         <ng-container matColumnDef="firstName">
             <th mat-header-cell *matHeaderCellDef> First Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.firstName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
             <th mat-header-cell *matHeaderCellDef> Last Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.lastName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="username">
             <th mat-header-cell *matHeaderCellDef> Username </th>
-            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.username}} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.email}} </td>
         </ng-container>
 
         <ng-container matColumnDef="isCompany">
             <th mat-header-cell *matHeaderCellDef> isCompany </th>
-            <td mat-cell *matCellDef="let element"> {{element.isCompany}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.isCompany}} </td>
         </ng-container>
 
         <ng-container matColumnDef="location">
             <th mat-header-cell *matHeaderCellDef> Location </th>
-            <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+            <td mat-cell *matCellDef="let element" [style]='element.approved?"border-bottom:1px solid rgb(127, 255, 0);":"border-bottom: 1px solid #ff4081"'> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="approved">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <div *ngIf="!element.approved" class="actions-wrapper">
+                    <button mat-icon-button style="color:chartreuse" (click)="newUser()">
+                  <mat-icon>check</mat-icon>
+                  </button>
+                    <button mat-icon-button color="accent" (click)="newUser()">
+                    <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="element.approved" class="actions-wrapper">
+                    <button mat-icon-button color="primary" (click)="newUser()">
+                    <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="newUser()">
+                    <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </div>
+
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

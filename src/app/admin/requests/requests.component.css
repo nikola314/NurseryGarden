@@ -12,3 +12,7 @@ table {
     margin: 0;
     display: block;
 }
+
+.actions-wrapper {
+    text-align: center;
+}
