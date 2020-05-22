@@ -85,7 +85,7 @@ export class GardenListComponent implements OnInit, OnDestroy {
   }
 }
 
-// ------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------  DIALOG  ------------------------------------------------------
 
 export interface GardenCreateDialogData {
   name: string;

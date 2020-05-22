@@ -8,6 +8,7 @@
   + Capatcha
   + Dont allow login if not approved
   - Admin
+    + User list
     - Approve users
     - Create or delete users
 
@@ -48,7 +49,6 @@
 
 - Delivery - transfer order to warehouse
         - Add to garden storage (warehouse) on delivery
-
 
 
 - Online store

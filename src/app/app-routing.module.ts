@@ -9,6 +9,7 @@ import { GardenListComponent } from './farmer/garden-list/garden-list.component'
 import { GardenDashboardComponent } from './farmer/garden-dashboard/garden-dashboard.component';
 import { HomePageGuard } from './homepage.guard';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { RequestsComponent } from './admin/requests/requests.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -31,6 +32,7 @@ const routes: Routes = [
     component: GardenDashboardComponent,
     canActivate: [AuthGuard], // TODO: check garden ownership
   },
+  { path: 'requests', component: RequestsComponent },
 ];
 
 @NgModule({

@@ -113,3 +113,18 @@ exports.changePassword = (req, res, next) => {
             });
         });
 };
+
+exports.getUsers = (req, res, next) => {
+    User.find({})
+        .then((documents) => {
+            res.status(200).json({
+                message: "Users fetched successfully!",
+                users: documents,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Fetching users failed!",
+            });
+        });
+};

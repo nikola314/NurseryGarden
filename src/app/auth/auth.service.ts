@@ -13,8 +13,10 @@ const BACKEND_URL = environment.apiUrl + '/auth/';
 export class AuthService {
   private token: string;
   private authStatusLIstener = new Subject<boolean>();
+  private accountsListener = new Subject<AuthData[]>();
   private isAuthenticated = false;
   private tokenTimer;
+  private users: AuthData[] = [];
   constructor(private http: HttpClient, private router: Router) {}
 
   private user: SignedUserData = null;
@@ -25,6 +27,10 @@ export class AuthService {
 
   getAuthStatusListener() {
     return this.authStatusLIstener.asObservable();
+  }
+
+  getAccountsListener() {
+    return this.accountsListener.asObservable();
   }
 
   getIsAuthenticated() {
@@ -38,6 +44,15 @@ export class AuthService {
 
   getUser() {
     return this.user;
+  }
+
+  getUsers() {
+    return this.http
+      .get<{ message: string; users: [any] }>(BACKEND_URL + 'pendingUsers/')
+      .subscribe((response) => {
+        this.users = response.users;
+        this.accountsListener.next(this.users);
+      });
   }
 
   createUser(authData: AuthData) {

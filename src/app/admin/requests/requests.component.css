@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+}
+
+.ninety-five-percent {
+    width: 95%;
+}
+
+.plus-one-container {
+    width: 3%;
+    float: right;
+    margin: 0;
+    display: block;
+}
