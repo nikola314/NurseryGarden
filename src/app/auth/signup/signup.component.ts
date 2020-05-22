@@ -80,6 +80,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         location: new FormControl(null, { validators: [Validators.required] }),
         phone: new FormControl(null, { validators: [Validators.required] }),
         date: new FormControl(null, { validators: [Validators.required] }),
+        recaptchaReactive: new FormControl(null, Validators.required),
       },
       { validators: matchPasswords }
     );

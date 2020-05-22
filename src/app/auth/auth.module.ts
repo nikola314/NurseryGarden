@@ -6,6 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {
+  RecaptchaModule,
+  RecaptchaFormsModule,
+  RECAPTCHA_SETTINGS,
+  RecaptchaSettings,
+} from 'ng-recaptcha';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, ChangePasswordComponent],
@@ -15,6 +21,16 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     CommonModule,
     RouterModule,
     AngularMaterialModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+  ],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: '6Lcp_PoUAAAAACbwbUVmxY6qitklDhPxA3YSmy2e',
+      } as RecaptchaSettings,
+    },
   ],
 })
 export class AuthModule {}

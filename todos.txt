@@ -5,7 +5,7 @@
   + Change information sent and recieved
   + Prettier navigation
   + Change password
-  - Capatcha
+  + Capatcha
   + Dont allow login if not approved
   - Admin
     - Approve users
@@ -27,11 +27,10 @@
   + updating slots
   + Sorting and filtering in warehouse
   + Orders tab in garden
-  - Orders service !
-  - Fetch orders when fetching garden
-    - Sort and filter orders?
+  + Fetch orders when fetching garden
+    + Sort orders
   + Add condition if plant==null && current time-slot.timePlanted > DAY
-  - Display garden name/location
+  + Display garden name/location
   + plant images ( progress dependent )
   - Notification (garden needs attention)
   + Bind (populate) product to slot so product.time is accessible for progress

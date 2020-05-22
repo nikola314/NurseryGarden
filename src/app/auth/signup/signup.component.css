@@ -11,3 +11,7 @@ textarea {
 mat-spinner {
     margin: auto;
 }
+
+.recaptcha-wrapper {
+    text-align: right;
+}

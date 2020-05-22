@@ -46,12 +46,17 @@
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="this.form.get('date').invalid">Please enter a valid date</mat-error>
         </mat-form-field>
+        <div class="recaptcha-wrapper">
+            <div style="display: inline-block;">
+                <re-captcha formControlName="recaptchaReactive"></re-captcha>
+            </div>
+        </div>
 
 
         <!-- todo: finish form -->
 
 
-        <button *ngIf="!isLoading" mat-raised-button color="primary" type="submit">Signup</button>
+        <button *ngIf="!isLoading" [disabled]="form.invalid" mat-raised-button color="primary" type="submit">Signup</button>
         <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
 </mat-card>
