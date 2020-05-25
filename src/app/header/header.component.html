@@ -17,6 +17,9 @@
         <li *ngIf="userIsAuthenticated && !user.isAdmin && !user.isCompany">
             <a mat-button routerLink="/" routerLinkActive="mat-accent">My Gardens</a>
         </li>
+        <li *ngIf="userIsAuthenticated && !user.isAdmin && !user.isCompany">
+            <a mat-button routerLink="/store" routerLinkActive="mat-accent">Store</a>
+        </li>
 
         <!-- COMPANY -->
         <li *ngIf="userIsAuthenticated && !user.isAdmin && user.isCompany">
@@ -29,10 +32,6 @@
             <a mat-button routerLink="/stats" routerLinkActive="mat-accent">Statistics</a>
         </li>
 
-
-        <li *ngIf="userIsAuthenticated && !user.isAdmin">
-            <a mat-button routerLink="/store" routerLinkActive="mat-accent">Store</a>
-        </li>
         <!-- ALL -->
         <li *ngIf="!userIsAuthenticated">
             <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>

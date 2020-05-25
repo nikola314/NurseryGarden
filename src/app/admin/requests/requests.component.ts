@@ -71,7 +71,6 @@ export class RequestsComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result: RequestsDialogData) => {
       if (result) {
-        console.log(result.password);
         this.authService.updateUser(result).subscribe(() => {
           this.authService.getUsers();
         });
@@ -88,10 +87,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result: RequestsDialogData) => {
       if (result) {
-        console.log(JSON.stringify(result));
-
-        // TODO create user
-        this.authService.createUser(result);
+        this.authService.createUser(result, false);
       }
     });
   }

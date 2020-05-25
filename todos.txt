@@ -9,12 +9,12 @@
   + Dont allow login if not approved
 
 
-  + Admin
-    + User list
-    + Approve users
-    + Create users
-    + Delete users
-    + Edit users
++ Admin
+  + User list
+  + Approve users
+  + Create users
+  + Delete users
+  + Edit users
 
 + Routing - '/' different things for different users
 
@@ -64,5 +64,13 @@
 + Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
 - Company:
+  - add products manually
+    + Dialog with stepper
+    - Add to database (create or update depending on whether it already exists)
+  - add products via JSON
+  + change products model to have quantity
+  - product service
+    - backend for requests
+  - Products list page
+  - Order list page
   - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
-  - adding products

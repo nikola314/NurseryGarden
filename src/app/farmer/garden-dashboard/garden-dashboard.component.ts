@@ -61,6 +61,7 @@ export class GardenDashboardComponent
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.userId = this.authService.getUserId();
+        // if changed logout
       });
     this.route.paramMap.subscribe((paramMap) => {
       this.gardenId = paramMap.get('gardenId');

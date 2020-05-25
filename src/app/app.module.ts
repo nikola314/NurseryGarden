@@ -12,6 +12,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { FarmerModule } from './farmer/farmer.module';
+import { CompanyModule } from './company/company.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ErrorComponent],
@@ -24,6 +25,7 @@ import { FarmerModule } from './farmer/farmer.module';
     PostsModule,
     AuthModule,
     FarmerModule,
+    CompanyModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

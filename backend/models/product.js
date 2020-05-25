@@ -6,6 +6,12 @@ const productSchema = mongoose.Schema({
     isPlant: { type: Boolean, required: true },
     manufacturer: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     time: { type: Number, required: true },
+    available: { type: Number, required: true },
+    comments: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        comment: { type: String, required: true },
+        grade: { type: Number, required: true }
+    }]
 });
 
 productSchema.plugin(uniqueValidator);

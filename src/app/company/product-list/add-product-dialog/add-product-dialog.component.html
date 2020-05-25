@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Add product</h1>
+<div mat-dialog-content>
+    <mat-form-field floatLabel="always" appearance="none">
+        <mat-slide-toggle name="isPlant" [checked]="isPlant" (change)="switchProductType($event)"><b>{{productType}}</b></mat-slide-toggle>
+        <textarea matInput hidden></textarea>
+    </mat-form-field>
+    <mat-vertical-stepper linear>
+        <mat-step [stepControl]="formGroup1">
+            <form [formGroup]="formGroup1">
+                <ng-template matStepLabel>What is the name of this product?</ng-template>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" placeholder="Name" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="formGroup2">
+            <form [formGroup]="formGroup2">
+                <ng-template matStepLabel>How many do you want to add?</ng-template>
+                <mat-form-field>
+                    <mat-label>Quantity</mat-label>
+                    <input matInput type="number" placeholder="Quantity" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <!-- <button mat-button  (click)="addProduct()">Add</button> -->
+                </div>
+            </form>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button mat-button [disabled]="formGroup1.invalid || formGroup2.invalid" [mat-dialog-close]="getResponseData()" cdkFocusInitial>Add</button>
+</div>

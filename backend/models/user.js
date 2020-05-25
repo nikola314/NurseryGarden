@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     location: { type: String, required: true },
     date: { type: Date, required: true },
     isCompany: { type: Boolean, required: true },
-    isAdmin: { type: Boolean, required: true }
+    isAdmin: { type: Boolean, required: true },
 });
 
 userSchema.plugin(uniqueValidator);

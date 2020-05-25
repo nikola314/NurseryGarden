@@ -10,6 +10,7 @@ import { GardenDashboardComponent } from './farmer/garden-dashboard/garden-dashb
 import { HomePageGuard } from './homepage.guard';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { RequestsComponent } from './admin/requests/requests.component';
+import { ProductListComponent } from './company/product-list/product-list.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'gardens/:gardenId',
     component: GardenDashboardComponent,
     canActivate: [AuthGuard], // TODO: check garden ownership
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
   },
   { path: 'requests', component: RequestsComponent },
 ];

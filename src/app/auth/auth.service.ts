@@ -63,10 +63,10 @@ export class AuthService {
     return this.http.delete(BACKEND_URL + 'delete/' + (authData as any)._id);
   }
 
-  createUser(authData: AuthData) {
+  createUser(authData: AuthData, redirect: boolean = true) {
     return this.http.post(BACKEND_URL + 'signup', authData).subscribe(
       (response) => {
-        this.router.navigate(['/login']);
+        if (redirect) this.router.navigate(['/login']);
       },
       (error) => {
         this.authStatusLIstener.next(false);
