@@ -55,6 +55,14 @@ export class AuthService {
       });
   }
 
+  updateUser(authData: AuthData) {
+    return this.http.put(BACKEND_URL + 'update', authData);
+  }
+
+  deleteUser(authData: AuthData) {
+    return this.http.delete(BACKEND_URL + 'delete/' + (authData as any)._id);
+  }
+
   createUser(authData: AuthData) {
     return this.http.post(BACKEND_URL + 'signup', authData).subscribe(
       (response) => {

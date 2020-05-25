@@ -128,3 +128,66 @@ exports.getUsers = (req, res, next) => {
             });
         });
 };
+
+exports.updateUser = (req, res, next) => {
+    User.findById(req.body._id)
+        .then((user) => {
+            if (!user) {
+                return res.status("401").json({
+                    message: "Request failed",
+                });
+            }
+            user.approved = req.body.approved;
+            user.email = req.body.email;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.location = req.body.location;
+            user.isCompany = req.body.isCompany;
+            // user.date = req.body.date;
+            user.phone = req.body.phone;
+            user.username = req.body.username;
+            if (user.password != req.body.password) {
+                bcrypt.hash(req.body.password, 10).then((hash) => {
+                    user.password = hash;
+                    User.updateOne({ _id: user._id }, user).then((result) => {
+                        if (result.n > 0) {
+                            res.status(200).json({ message: "User updated successfully!" });
+                        } else {
+                            res.status(401).json({ message: "Error updating user!" });
+                        }
+                    });
+                })
+            } else {
+                User.updateOne({ _id: user._id }, { $set: user }).then((result) => {
+                    if (result.n > 0) {
+                        res.status(200).json({ message: "User updated successfully!" });
+                    } else {
+                        res.status(401).json({ message: "Error updating user!" });
+                    }
+                });
+            }
+
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status("401").json({
+                message: "Updating failed",
+            });
+        });
+}
+
+exports.deleteUser = (req, res, next) => {
+    User.deleteOne({ _id: req.params.id })
+        .then((result) => {
+            if (result.n > 0) {
+                res.status(200).json({ message: "User deleted successfully" });
+            } else {
+                res.status(401).json({ message: "Deleting user failed!" });
+            }
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Failed to delete user!",
+            });
+        });
+}

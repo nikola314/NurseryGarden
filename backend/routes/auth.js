@@ -14,4 +14,8 @@ router.post("/changePassword", checkAuth, userController.changePassword);
 
 router.get("/pendingUsers", checkAuth, checkAdmin, userController.getUsers);
 
+router.put("/update", checkAuth, checkAdmin, userController.updateUser);
+
+router.delete("/delete/:id", checkAuth, checkAdmin, userController.deleteUser);
+
 module.exports = router;

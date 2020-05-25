@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>{{dialogTitle}}</h1>
+<div mat-dialog-content>
+    <mat-form-field floatLabel="always" appearance="none">
+        <mat-slide-toggle name="isCompany" [checked]="isCompany" (change)="switchAccountType($event)"><b>{{accountType}}</b></mat-slide-toggle>
+        <textarea matInput hidden></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input [(ngModel)]="data.firstName" required matInput required #firstName="ngModel" type="text" name="first_name" placeholder="{{firstNamePlaceholder}}">
+        <mat-error *ngIf="firstName.invalid">First name is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="!isCompany">
+        <input [(ngModel)]="data.lastName" #lastName="ngModel" matInput required type="text" name="last_name" placeholder="Last Name">
+        <mat-error *ngIf="lastName.invalid">Last name is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input [(ngModel)]="data.username" #username="ngModel" matInput required type="text" name="username" placeholder="{{usernamePlaceholder}}">
+        <mat-error *ngIf="username.invalid">Username is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always" appearance="none">
+        <mat-slide-toggle name="isApproved" [checked]="approved" (change)="switchIsApproved($event)"><b>{{isApprovedText}}</b></mat-slide-toggle>
+        <textarea matInput hidden></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input [(ngModel)]="data.email" #email="ngModel" matInput type="email" placeholder="E-Mail" email required name="email">
+        <mat-error *ngIf="email.invalid">email is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input [(ngModel)]="data.password" #password="ngModel" required type="password" matInput placeholder="Password" name="password">
+        <mat-error *ngIf="password.invalid">Password is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input [(ngModel)]="data.location" #location="ngModel" required type="text" matInput placeholder="Location" name="location">
+        <mat-error *ngIf="location.invalid">location is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input [(ngModel)]="data.phone" #phone="ngModel" required type="text" matInput placeholder="Phone Number" name="phone">
+        <mat-error *ngIf="phone.invalid">phone is required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input [(ngModel)]="data.date" #date="ngModel" required matInput [matDatepicker]="picker" name="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date.invalid">Date is required.</mat-error>
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{submitButtonText}}</button>
+</div>

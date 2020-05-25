@@ -1,4 +1,4 @@
-- Authentication
++ Authentication
   + Login form: username instead of email
   + Registration form - 2 forms
   + Password checking using regex
@@ -7,11 +7,14 @@
   + Change password
   + Capatcha
   + Dont allow login if not approved
-  - Admin
+
+
+  + Admin
     + User list
-    - Generalized popup for adding and modifying users
-    - Approve users
-    - Create or delete users
+    + Approve users
+    + Create users
+    + Delete users
+    + Edit users
 
 + Routing - '/' different things for different users
 

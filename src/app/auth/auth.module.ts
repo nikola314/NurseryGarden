@@ -12,7 +12,10 @@ import {
   RECAPTCHA_SETTINGS,
   RecaptchaSettings,
 } from 'ng-recaptcha';
-import { RequestsComponent } from '../admin/requests/requests.component';
+import {
+  RequestsComponent,
+  RequestsDialog,
+} from '../admin/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { RequestsComponent } from '../admin/requests/requests.component';
     SignupComponent,
     ChangePasswordComponent,
     RequestsComponent,
+    RequestsDialog,
   ],
   imports: [
     FormsModule,
@@ -38,5 +42,6 @@ import { RequestsComponent } from '../admin/requests/requests.component';
       } as RecaptchaSettings,
     },
   ],
+  entryComponents: [RequestsDialog],
 })
 export class AuthModule {}

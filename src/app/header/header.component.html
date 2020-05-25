@@ -12,9 +12,6 @@
         <li *ngIf="userIsAuthenticated && user.isAdmin">
             <a mat-button routerLink="/" routerLinkActive="mat-accent">Requests</a>
         </li>
-        <li *ngIf="userIsAuthenticated && user.isAdmin">
-            <a mat-button routerLink="/accounts" routerLinkActive="mat-accent">Manage Accounts</a>
-        </li>
 
         <!-- FARMER -->
         <li *ngIf="userIsAuthenticated && !user.isAdmin && !user.isCompany">
