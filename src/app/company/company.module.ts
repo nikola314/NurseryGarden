@@ -5,9 +5,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AddProductDialogComponent } from './product-list/add-product-dialog/add-product-dialog.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
-  declarations: [ProductListComponent, AddProductDialogComponent],
+  declarations: [ProductListComponent, AddProductDialogComponent, OrderListComponent],
   imports: [
     CommonModule,
     RouterModule,

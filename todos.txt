@@ -51,8 +51,6 @@
 
 - Modify cron job to run more often
 
-- Delivery - transfer order to warehouse
-        - Add to garden storage (warehouse) on delivery
 
 
 - Online store
@@ -64,13 +62,22 @@
 + Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
 - Company:
-  - add products manually
+  + add products manually
     + Dialog with stepper
-    - Add to database (create or update depending on whether it already exists)
-  - add products via JSON
+    + Add to database (create or update depending on whether it already exists)
+    + Update products
+  + add products via JSON
+  - checkOwner middleware on backend
   + change products model to have quantity
-  - product service
-    - backend for requests
-  - Products list page
-  - Order list page
+  + product service
+    + backend for requests
+  + Products list page
+  + Order list page
+  - Accept or reject orders
+  - Sending orders
+    - google distance API
+    - 5 employees
   - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
+
+- Delivery - transfer order to warehouse
+        - Add to garden storage (warehouse) on delivery

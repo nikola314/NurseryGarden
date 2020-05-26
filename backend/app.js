@@ -9,6 +9,8 @@ const jobs = require("./cron-jobs");
 const postsRoutes = require("./routes/posts");
 const authRoutes = require("./routes/auth");
 const gardensRoutes = require("./routes/gardens");
+const productsRoutes = require("./routes/products");
+const ordersRoutes = require("./routes/orders");
 
 const app = express();
 
@@ -46,6 +48,9 @@ app.use((req, res, next) => {
 app.use("/api/posts", postsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/gardens", gardensRoutes);
+app.use("/api/products", productsRoutes);
+app.use("/api/orders", ordersRoutes);
+
 
 cron.schedule("1 * * * *", function() {
     // TODO: maybe add date created to gardens and check if hour actually passed and run cron more often

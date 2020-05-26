@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="ordersDataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="product.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Count </th>
+        <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isPickedUp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Picked up </th>
+        <td mat-cell *matCellDef="let element"> {{element.isPickedUp? "Yes":"No"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="ordersDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: ordersDisplayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

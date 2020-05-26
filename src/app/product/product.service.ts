@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { Order } from './order.model';
 
 const BACKEND_URL = environment.apiUrl + '/products/';
+const ORDERS_URL = environment.apiUrl + '/orders/';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
@@ -16,16 +18,15 @@ export class ProductService {
 
   getCompanyProducts(manufacturer: string) {
     return this.http.get<{ message: string; products: Product[] }>(
-      BACKEND_URL + manufacturer
+      BACKEND_URL + 'company/' + manufacturer
     );
   }
 
   addProduct(product) {
-    this.http
-      .post<{ message: string; garden: any }>(BACKEND_URL, product)
-      .subscribe((responseData) => {
-        // tODO needed?
-      });
+    return this.http.post<{ message: string; product: any }>(
+      BACKEND_URL,
+      product
+    );
   }
 
   getProduct(id: string) {
@@ -40,5 +41,12 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.http.delete(BACKEND_URL + id);
+  }
+
+  getCompanyOrders() {
+    // TODO implement
+    return this.http.get<{ message: string; orders: Order[] }>(
+      ORDERS_URL + '/company'
+    );
   }
 }

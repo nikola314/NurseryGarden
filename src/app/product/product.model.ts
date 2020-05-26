@@ -6,4 +6,5 @@ export interface Product {
   time: number;
   comments: any;
   available: number;
+  price: number;
 }
