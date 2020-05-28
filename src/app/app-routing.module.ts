@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 import { RequestsComponent } from './admin/requests/requests.component';
 import { ProductListComponent } from './company/product-list/product-list.component';
 import { OrderListComponent } from './company/order-list/order-list.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -38,6 +39,10 @@ const routes: Routes = [
     path: 'products',
     component: ProductListComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'products/:productId',
+    component: ProductDetailsComponent,
   },
   {
     path: 'orders',

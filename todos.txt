@@ -52,7 +52,6 @@
 - Modify cron job to run more often
 
 
-
 - Online store
   - Sort
   - Filter
@@ -78,6 +77,10 @@
     - google distance API
     - 5 employees
   - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
+  - company statistics
 
 - Delivery - transfer order to warehouse
         - Add to garden storage (warehouse) on delivery
+
+!!!! - backend-order.js isOrderedByUser
+     - front - comment div if can comment

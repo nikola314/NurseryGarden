@@ -1,0 +1,58 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet" />
+<mat-card>
+    <mat-card-title class="pink-underline">{{product.name}}</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list">
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+                <div class="list-item">Type:</div>
+                <div class="list-item">{{product.isPlant? "Plant":"Suplement"}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+                <div class="list-item">Manufacturer:</div>
+                <div class="list-item">{{product.manufacturer.firstName}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+                <div class="list-item">{{product.isPlant? "Time to grow":"Growing time reduced"}}:</div>
+                <div class="list-item">{{product.time}}ms</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+                <div class="list-item">In stock:</div>
+                <div class="list-item">{{product.available>0? "Yes":"No"}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+                <div class="list-item">Price:</div>
+                <div class="list-item">{{product.price}}$</div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+<mat-divider class="margintb"></mat-divider>
+
+<!-- COMMENTS -->
+<h1>Comments:</h1>
+<div *ngIf="canComment">
+    <!-- TODO: write comment -->
+</div>
+<table mat-table [dataSource]="commentsDataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="comment">
+        <td mat-cell *matCellDef="let element">
+            <mat-card class="row-card">
+                <mat-card-title>
+                    {{element.user.firstName+":"}}
+                    <mat-icon *ngFor="let star of stars; let i=index" fontSet="material-icons{{i<element.grade?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+                </mat-card-title>
+                <mat-card-content>{{element.comment}}</mat-card-content>
+            </mat-card>
+        </td>
+    </ng-container>
+
+    <!-- <tr mat-header-row *matHeaderRowDef="commentDisplayedColumns"></tr> -->
+    <tr mat-row *matRowDef="let row; columns: ['comment'];"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

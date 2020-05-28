@@ -4,7 +4,6 @@ const User = require("../models/user");
 
 const mongoose = require("mongoose");
 
-
 exports.getCompanyOrders = (req, res, next) => {
     // TODO: populate fields?
     const manufacturer = req.userData.userId;
@@ -12,9 +11,10 @@ exports.getCompanyOrders = (req, res, next) => {
         .populate({
             path: "product",
             match: {
-                manufacturer: manufacturer
-            }
-        }).then((orders) => {
+                manufacturer: manufacturer,
+            },
+        })
+        .then((orders) => {
             orders = orders.filter((order) => {
                 return order.product;
             });
@@ -22,12 +22,16 @@ exports.getCompanyOrders = (req, res, next) => {
                 message: "Orders fetched successfully!",
                 orders: orders,
             });
-
         })
         .catch((err) => {
             console.log(err);
             res.status(500).json({
                 message: "Getting orders failed!",
             });
-        })
-}
+        });
+};
+
+exports.getIsOrderedByUser = (req, res, next) => {
+    let productId = req.params.productId;
+    // TODO: implement
+};

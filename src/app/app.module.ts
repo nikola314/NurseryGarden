@@ -13,9 +13,15 @@ import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { FarmerModule } from './farmer/farmer.module';
 import { CompanyModule } from './company/company.module';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ErrorComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ErrorComponent,
+    ProductDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

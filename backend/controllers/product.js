@@ -12,9 +12,10 @@ exports.createProduct = (req, res, next) => {
         available: req.body.available,
         time: req.body.time,
         price: req.body.price,
-        comments: []
+        comments: [],
     });
-    product.save()
+    product
+        .save()
         .then((createdProduct) => {
             res.status(201).json({
                 message: "Product created successfully",
@@ -26,12 +27,12 @@ exports.createProduct = (req, res, next) => {
                 message: "Creating product failed!",
             });
             console.log(err);
-        })
-}
+        });
+};
 
 exports.deleteProduct = (req, res, next) => {
     // TODO implement
-}
+};
 
 exports.updateProduct = (req, res, next) => {
     Product.findById(req.params.id)
@@ -44,40 +45,43 @@ exports.updateProduct = (req, res, next) => {
                 product.name = req.body.name;
                 product.isPlant = req.body.isPlant;
                 product.price = req.body.price;
-                product.save()
-                    .then((result) => {
-                        res.status(201).json({
-                            message: "Product updated successfully",
-                            product: product,
-                        });
-                    })
+                product.save().then((result) => {
+                    res.status(201).json({
+                        message: "Product updated successfully",
+                        product: product,
+                    });
+                });
             }
-        }).catch((err) => {
+        })
+        .catch((err) => {
             res.status(500).json({
                 message: "Updating failed!",
             });
-        })
-}
+        });
+};
 
 exports.getCompanyProducts = (req, res, next) => {
     // TODO: populate fields?
     const manufacturer = req.params.id;
-    Product.find({ manufacturer: manufacturer }).then((products) => {
-        res.status(200).json({
-            message: "Products fetched successfully!",
-            products: products,
+    Product.find({ manufacturer: manufacturer })
+        .then((products) => {
+            res.status(200).json({
+                message: "Products fetched successfully!",
+                products: products,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                message: "Getting products failed!",
+            });
         });
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).json({
-            message: "Getting products failed!",
-        });
-    })
-}
+};
 
 exports.getProduct = (req, res, next) => {
     Product.findById(req.params.id)
         .populate("comments.user")
+        .populate("manufacturer")
         .then((product) => {
             res.status(200).json({
                 message: "Product fetched successfully!",
@@ -89,8 +93,8 @@ exports.getProduct = (req, res, next) => {
             res.status(500).json({
                 message: "Fetching product failed!",
             });
-        })
-}
+        });
+};
 
 exports.getProducts = (req, res, next) => {
     Product.find({})
@@ -106,5 +110,5 @@ exports.getProducts = (req, res, next) => {
             res.status(500).json({
                 message: "Fetching products failed!",
             });
-        })
-}
+        });
+};

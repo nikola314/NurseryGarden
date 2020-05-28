@@ -1,0 +1,30 @@
+mat-card {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.list-item {
+    display: inline-block;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.pink-underline {
+    color: #ff4081;
+    text-decoration: underline;
+}
+
+.margintb {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+}
+
+.row-card {
+    width: 100%;
+}

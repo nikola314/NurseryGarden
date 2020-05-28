@@ -44,9 +44,14 @@ export class ProductService {
   }
 
   getCompanyOrders() {
-    // TODO implement
     return this.http.get<{ message: string; orders: Order[] }>(
       ORDERS_URL + '/company'
+    );
+  }
+  getIsOrderedByUser(productId) {
+    return this.http.get<{ message: string; canComment: Order[] }>(
+      // TODO: implement on backend
+      ORDERS_URL + '/userOrdered/' + productId
     );
   }
 }
