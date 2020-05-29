@@ -34,7 +34,7 @@ exports.getCompanyOrders = (req, res, next) => {
 exports.getIsOrderedByUser = (req, res, next) => {
     let productId = req.params.productId;
     let userId = req.userData.userId;
-    Order.find({ product: productId }).populate({
+    Order.find({ product: productId, isDelivered: true }).populate({
             path: "garden",
             match: {
                 owner: userId
@@ -60,3 +60,29 @@ exports.getIsOrderedByUser = (req, res, next) => {
         });
 
 };
+
+
+exports.createOrder = (req, res, next) => {
+    var order = new Order({
+        product: mongoose.Types.ObjectId(req.body.product),
+        isDelivered: req.body.isDelivered,
+        garden: mongoose.Types.ObjectId(garden),
+        isPickedUp: req.body.isPickedUp,
+        timestamp: req.body.timestamp,
+        count: req.body.count,
+    });
+    order
+        .save()
+        .then((createdOrder) => {
+            res.status(201).json({
+                message: "Order created successfully",
+                order: createdOrder,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Creating order failed!",
+            });
+            console.log(err);
+        });
+}

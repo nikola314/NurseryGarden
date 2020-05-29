@@ -46,3 +46,41 @@ mat-card-content {
 mat-form-field {
     width: 100%;
 }
+
+.shopping-cart {
+    position: absolute;
+    right: 5%;
+    top: 80px;
+    z-index: 1000;
+}
+
+.select-garden {
+    position: absolute;
+    left: 5%;
+    top: 80px;
+    z-index: 1000;
+}
+
+.selected-garden-name {
+    position: absolute;
+    left: 5%;
+    top: 130px;
+    z-index: 1000;
+    color: #44a240;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    padding-left: 8px;
+}
+
+table {
+    width: 100%;
+}
+
+mat-card-actions {
+    text-align: center;
+    padding: 0;
+}
+
+mat-card-actions p {
+    margin: 0;
+}

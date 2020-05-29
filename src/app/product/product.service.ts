@@ -52,10 +52,15 @@ export class ProductService {
       ORDERS_URL + '/company'
     );
   }
+
   getIsOrderedByUser(productId) {
     return this.http.get<{ message: string; canComment: boolean }>(
       // TODO: implement on backend
       ORDERS_URL + '/userOrdered/' + productId
     );
+  }
+
+  makeOrder(order) {
+    return this.http.post<{ message: string; order: any }>(ORDERS_URL, order);
   }
 }

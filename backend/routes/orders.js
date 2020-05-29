@@ -8,6 +8,8 @@ const orderController = require("../controllers/order");
 
 router.get("/company", checkAuth, orderController.getCompanyOrders);
 
+router.post("", checkAuth, orderController.createOrder);
+
 router.get(
     "/userOrdered/:productId",
     checkAuth,

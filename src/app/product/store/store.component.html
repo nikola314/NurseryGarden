@@ -4,9 +4,66 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
     </mat-form-field>
 </div> -->
+<div class="select-garden">
+    <button mat-mini-fab style="background-color:#44a240" [mdePopoverTriggerFor]="gardenPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="click">
+<mat-icon>local_florist</mat-icon>
+</button>
+</div>
+
+<p class="selected-garden-name">{{selectedGarden.name}}</p>
+
+<mde-popover #gardenPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="true" mdePopoverLeaveDelay="0">
+    <mat-card style="max-width: 300px; min-width:150px;">
+        <mat-card-content>
+            <p>Select garden:</p>
+            <table mat-table [dataSource]="gardens" class="mat-elevation-z1">
+                <ng-container matColumnDef="name">
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <tr mat-row *matRowDef="let row; columns: ['name'];" (click)="selectGarden(row)" style="cursor:pointer;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</mde-popover>
+
+<div class="shopping-cart">
+    <button mat-mini-fab color="accent" [mdePopoverTriggerFor]="cartPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="click">
+<mat-icon>shopping_cart</mat-icon>
+</button>
+</div>
+
+<mde-popover #cartPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="false" mdePopoverLeaveDelay="0">
+    <mat-card style="max-width: 500px; min-width:200px;">
+        <mat-card-content>
+            <table mat-table [dataSource]="productsInCart" class="mat-elevation-z1">
+                <ng-container matColumnDef="product.name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="count">
+                    <th mat-header-cell *matHeaderCellDef> Count </th>
+                    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="garden.name">
+                    <th mat-header-cell *matHeaderCellDef> Garden </th>
+                    <td mat-cell *matCellDef="let element"> {{element.garden.name}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['product.name','count','garden.name']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['product.name','count','garden.name'];"></tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <p>Total: {{totalCartSum()}}$</p>
+            <button mat-button (click)="buyProductsFromCart()">Buy</button>
+        </mat-card-actions>
+    </mat-card>
+</mde-popover>
 
 <div class="card-deck-container">
-
     <mat-card *ngFor="let product of currentItemsToShow" class="example-card card-item">
         <mat-card-header>
             <img mat-card-avatar src="../../../assets/images/{{product.isPlant?'plant':'suplement'}}.png" />
@@ -14,7 +71,7 @@
             <mat-card-subtitle>{{product.price}}$</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <p>Manufacutrer: {{product.manufacturer}}
+            <p>Manufacutrer: {{product.manufacturer.firstName}}
                 <br> {{product.isPlant?"Time to grow":"Growing time reduced"}}: {{product.time}}ms
                 <br> Price: {{product.price}}$
                 <br> Rating: {{product.comments.length == 0? "Not rated":calculateRating(product)+"/5"}}

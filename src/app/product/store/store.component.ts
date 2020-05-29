@@ -4,6 +4,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Product } from '../product.model';
+import { GardenService } from 'src/app/farmer/garden.service';
+import { Garden, GardenBackendModel } from 'src/app/farmer/garden.model';
+import { Order } from '../order.model';
 
 @Component({
   selector: 'app-store',
@@ -12,6 +15,9 @@ import { Product } from '../product.model';
 })
 export class StoreComponent implements OnInit {
   products: MatTableDataSource<any> = new MatTableDataSource();
+  productsInCart: MatTableDataSource<any> = new MatTableDataSource();
+  gardens: MatTableDataSource<any> = new MatTableDataSource();
+  selectedGarden: GardenBackendModel = null;
   currentItemsToShow = [];
   defaultPageSize = 12;
   userId = null;
@@ -19,12 +25,14 @@ export class StoreComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(
     private productsService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private gardensService: GardenService
   ) {}
 
   ngOnInit(): void {
     this.getProducts();
     this.userId = this.authService.getUserId();
+    this.getGardens();
   }
 
   private getProducts() {
@@ -37,6 +45,13 @@ export class StoreComponent implements OnInit {
           this.defaultPageSize
         );
       }
+    });
+  }
+
+  private getGardens() {
+    this.gardensService.getGardensUnsubscribed().subscribe((response) => {
+      this.gardens.data = response.gardens;
+      this.selectedGarden = this.gardens.data[0];
     });
   }
 
@@ -56,12 +71,52 @@ export class StoreComponent implements OnInit {
     return sum / product.comments.length;
   }
 
-  details(product: Product) {}
+  addToCart(product: Product) {
+    // Todo: if available
+    console.log(product);
+    let ind = this.productsInCart.data.findIndex(
+      (pr) =>
+        product._id == pr.product._id &&
+        this.selectedGarden._id == pr.garden._id
+    );
+    if (ind == -1) {
+      this.productsInCart.data = [
+        ...this.productsInCart.data,
+        { product: product, count: 1, garden: this.selectedGarden },
+      ];
+    } else {
+      this.productsInCart.data[ind].count++;
+    }
+  }
 
-  addToCart(product: Product) {}
+  buyProductsFromCart() {
+    let orders = [];
+    for (let row of this.productsInCart.data) {
+      if (!row.garden || !row.product || row.count == 0) continue;
+      let order = {
+        product: row.product._id,
+        count: row.count,
+        isPickedUp: false,
+        isDelivered: false,
+        garden: row.garden._id,
+        timestamp: new Date(),
+      };
+      orders.push(order);
+    }
+    for (let order of orders) {
+      this.productsService.makeOrder(order);
+    }
+  }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.products.filter = filterValue.trim().toLowerCase();
-  // }
+  totalCartSum() {
+    let sum = 0;
+    for (let row of this.productsInCart.data) {
+      sum += row.product.price * row.count;
+    }
+    return sum;
+  }
+
+  selectGarden(garden) {
+    this.selectedGarden = garden;
+  }
 }

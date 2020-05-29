@@ -102,6 +102,7 @@ exports.getProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
     Product.find({})
         .populate("comments.user")
+        .populate("manufacturer")
         .then((products) => {
             res.status(200).json({
                 message: "Products fetched successfully!",

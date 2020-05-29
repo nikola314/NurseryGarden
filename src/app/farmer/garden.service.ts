@@ -50,6 +50,12 @@ export class GardenService {
       });
   }
 
+  getGardensUnsubscribed() {
+    return this.http.get<{ message: string; gardens: GardenBackendModel[] }>(
+      BACKEND_URL
+    );
+  }
+
   addGarden(data) {
     this.http
       .post<{ message: string; garden: any }>(BACKEND_URL, data)
