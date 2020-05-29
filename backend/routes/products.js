@@ -16,6 +16,6 @@ router.get("/company/:id", checkAuth, productController.getCompanyProducts);
 
 router.get("/:id", checkAuth, productController.getProduct);
 
-router.get("", checkAuth, productController.getProducts);
+router.get("", productController.getProducts);
 
 module.exports = router;

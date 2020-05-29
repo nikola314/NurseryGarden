@@ -194,8 +194,6 @@ export class GardenDashboardComponent
     let newTime = timePlanted - row.product.time;
     slot.timePlanted = new Date(newTime).toISOString();
     slot.product = slot.product._id;
-    console.log('old time: ' + timePlanted);
-    console.log('new time: ' + newTime);
 
     let suplement = this.garden.warehouse.find(
       (el) => el.product._id == row.product._id
@@ -207,8 +205,6 @@ export class GardenDashboardComponent
         let sl = this.garden.slots.find((el) => el._id == slot._id);
         sl.product = slot.product;
         sl.timePlanted = slot.timePlanted;
-        console.log('got here');
-        console.log(parseISOString(slot.timePlanted).getTime());
       });
     this.gardensService
       .updateGarden(this.garden)
@@ -283,9 +279,5 @@ export class GardenDashboardComponent
   parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
-  }
-
-  popupButtonTest() {
-    console.log('called');
   }
 }

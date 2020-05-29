@@ -16,6 +16,8 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   stars = [1, 2, 3, 4, 5];
   canComment = false;
+  content: string;
+  rating = 0;
   commentsDataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
@@ -33,15 +35,31 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  onClickRate(rating) {
+    this.rating = rating;
+  }
+
   private getProduct() {
     this.productsService.getProduct(this.productId).subscribe((response) => {
       if (response.product) {
         this.product = response.product;
         this.commentsDataSource.data = this.product.comments;
-        console.log(this.product);
         this.commentsDataSource.paginator = this.paginator;
         this.canComment = this.getCanComment();
       }
+    });
+  }
+
+  addComment() {
+    // TODO check if rating > 0 and comment!= ""
+    let comment = {
+      user: this.authService.getUserId(),
+      comment: this.content,
+      grade: this.rating,
+    };
+    this.product.comments.push(comment);
+    this.productsService.updateProduct(this.product).subscribe((response) => {
+      this.getProduct();
     });
   }
 

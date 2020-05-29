@@ -49,7 +49,6 @@ export class RequestsComponent implements OnInit, OnDestroy {
   }
 
   approveUser(user: AuthData) {
-    console.log(JSON.stringify(user));
     user.approved = true;
     this.authService.updateUser(user).subscribe(() => {
       this.authService.getUsers();
@@ -153,7 +152,6 @@ export class RequestsDialog {
     public dialogRef: MatDialogRef<RequestsDialog>,
     @Inject(MAT_DIALOG_DATA) public inputData: any
   ) {
-    console.log(JSON.stringify(inputData));
     if (inputData.dialogType == DIALOG_TYPE.UPDATE) {
       this.submitButtonText = 'Save';
       this.dialogTitle = 'Modify user';

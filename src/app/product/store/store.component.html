@@ -1,0 +1,37 @@
+<!-- <div>
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+    </mat-form-field>
+</div> -->
+
+<div class="card-deck-container">
+
+    <mat-card *ngFor="let product of currentItemsToShow" class="example-card card-item">
+        <mat-card-header>
+            <img mat-card-avatar src="../../../assets/images/{{product.isPlant?'plant':'suplement'}}.png" />
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-subtitle>{{product.price}}$</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Manufacutrer: {{product.manufacturer}}
+                <br> {{product.isPlant?"Time to grow":"Growing time reduced"}}: {{product.time}}ms
+                <br> Price: {{product.price}}$
+                <br> Rating: {{product.comments.length == 0? "Not rated":calculateRating(product)+"/5"}}
+                <br> Left in stock: {{product.available}}
+                <br></p>
+            <mat-card-actions>
+                <button mat-button [routerLink]="'/products/'+product._id">Details</button>
+                <button mat-button *ngIf="userId!=null" (click)="addToCart(product)">Add to cart</button>
+            </mat-card-actions>
+        </mat-card-content>
+
+
+    </mat-card>
+
+</div>
+
+
+
+
+<mat-paginator (page)="onPageChange($event)" [pageSize]="defaultPageSize" [pageSizeOptions]="[12, 20, 40]" showFirstLastButtons></mat-paginator>

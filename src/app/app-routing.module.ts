@@ -13,6 +13,7 @@ import { RequestsComponent } from './admin/requests/requests.component';
 import { ProductListComponent } from './company/product-list/product-list.component';
 import { OrderListComponent } from './company/order-list/order-list.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { StoreComponent } from './product/store/store.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -50,6 +51,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'requests', component: RequestsComponent },
+  { path: 'store', component: StoreComponent },
 ];
 
 @NgModule({

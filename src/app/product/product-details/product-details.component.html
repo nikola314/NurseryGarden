@@ -36,7 +36,28 @@
 <!-- COMMENTS -->
 <h1>Comments:</h1>
 <div *ngIf="canComment">
-    <!-- TODO: write comment -->
+    <mat-card class="add-comment-card">
+        <mat-card-title>Add your comment:</mat-card-title>
+        <mat-card-content>
+
+            <div class="rate-div">
+
+                <mat-icon (click)="onClickRate(1)" fontSet="material-icons{{rating>0?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+                <mat-icon (click)="onClickRate(2)" fontSet="material-icons{{rating>1?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+                <mat-icon (click)="onClickRate(3)" fontSet="material-icons{{rating>2?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+                <mat-icon (click)="onClickRate(4)" fontSet="material-icons{{rating>3?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+                <mat-icon (click)="onClickRate(5)" fontSet="material-icons{{rating>4?'':'-outlined'}}" style="color:#e2c813;">grade</mat-icon>
+
+            </div>
+            <div>
+                <mat-form-field>
+                    <textarea matInput matTextareaAutosize [(ngModel)]="content" placeholder="Comment"></textarea>
+                </mat-form-field>
+                <button matButton (click)="addComment()">Add</button>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
 </div>
 <table mat-table [dataSource]="commentsDataSource" matSort class="mat-elevation-z8">
 

@@ -53,10 +53,9 @@
 
 
 - Online store
-  - Sort
-  - Filter
   - Ordered and delivered
   - Cancel orders
+  - Cart
 
 + Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
@@ -78,9 +77,16 @@
     - 5 employees
   - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
   - company statistics
+  - CART
 
 - Delivery - transfer order to warehouse
         - Add to garden storage (warehouse) on delivery
 
-!!!! - backend-order.js isOrderedByUser
-     - front - comment div if can comment
+    + backend-order.js isOrderedByUser
+    + front - comment div if can comment
+
+
+    - STYLING WHEN EVERYTHING WORKS
+      -comments on product-details page
+
+- occupied on garden list page

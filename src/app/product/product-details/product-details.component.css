@@ -28,3 +28,7 @@ table {
 .row-card {
     width: 100%;
 }
+
+.rate-div mat-icon {
+    cursor: pointer;
+}

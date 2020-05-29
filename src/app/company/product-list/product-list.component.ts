@@ -69,7 +69,6 @@ export class ProductListComponent implements OnInit {
           time: number;
           price: number;
         }) => {
-          console.log(JSON.stringify(result));
           this.addOrUpdateProduct(result);
         }
       );
@@ -101,7 +100,6 @@ export class ProductListComponent implements OnInit {
     this.file = (event.target as HTMLInputElement).files[0];
     const fileReader = new FileReader();
     fileReader.readAsText(this.file, 'UTF-8');
-    console.log(this.file);
     if (this.file.type != 'application/json') {
       return;
       // TODO: notify user

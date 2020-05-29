@@ -35,6 +35,10 @@ export class ProductService {
     );
   }
 
+  getAllProducts() {
+    return this.http.get<{ message: string; products: Product[] }>(BACKEND_URL);
+  }
+
   updateProduct(product: Product) {
     return this.http.put(BACKEND_URL + product._id, product);
   }
@@ -49,7 +53,7 @@ export class ProductService {
     );
   }
   getIsOrderedByUser(productId) {
-    return this.http.get<{ message: string; canComment: Order[] }>(
+    return this.http.get<{ message: string; canComment: boolean }>(
       // TODO: implement on backend
       ORDERS_URL + '/userOrdered/' + productId
     );
