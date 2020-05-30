@@ -6,9 +6,10 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AddProductDialogComponent } from './product-list/add-product-dialog/add-product-dialog.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
-  declarations: [ProductListComponent, AddProductDialogComponent, OrderListComponent],
+  declarations: [ProductListComponent, AddProductDialogComponent, OrderListComponent, StatisticsComponent],
   imports: [
     CommonModule,
     RouterModule,

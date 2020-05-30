@@ -1,15 +1,13 @@
-<mat-card class="pink-back">
-    <mat-card-title>
-        <div>
-            <div class="garden-header-item">
-                <p color="primary">Garden: {{garden.name}}</p>
-            </div>
-            <div class="garden-header-item">
-                <p>Location: {{garden.location}}</p>
-            </div>
-        </div>
-    </mat-card-title>
-</mat-card>
+<div>
+    <div class="garden-header-item">
+        <p>Garden: <span class="pink">{{garden?.name}}</span></p>
+    </div>
+    <div class="garden-header-item">
+        <p>Location: <span class="pink">{{garden?.location}}</span></p>
+    </div>
+
+</div>
+<mat-divider></mat-divider>
 
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Garden">

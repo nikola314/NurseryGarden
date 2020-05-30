@@ -23,17 +23,21 @@ import { MdePopoverModule } from '@material-extended/mde';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   exports: [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatPaginatorModule,
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatBadgeModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,

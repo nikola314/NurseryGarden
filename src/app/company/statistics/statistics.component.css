@@ -1,0 +1,10 @@
+#chart {
+    height: 300px;
+}
+
+.chart-title {
+    text-align: center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}

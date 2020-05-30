@@ -55,7 +55,10 @@
 - Online store
   - Ordered and delivered
   - Cancel orders
-  - Cart
+  + Cart
+  - decrease number of available products after they're ordered
+    - if order is rejected return to available
+
 
 + Server-side workers to reduce the amount of water and temperature (node cron jobs - bookmarked)
 
@@ -77,7 +80,7 @@
     - 5 employees
   - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
   - company statistics
-  - CART
+  + CART
 
 - Delivery - transfer order to warehouse
         - Add to garden storage (warehouse) on delivery

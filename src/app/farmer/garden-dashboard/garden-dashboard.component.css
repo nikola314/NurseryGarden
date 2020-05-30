@@ -7,10 +7,6 @@
     padding: 2rem 0;
 }
 
-.pink-back {
-    background-color: #ff4081;
-}
-
 .garden-header-item {
     display: inline-block;
     width: 50%;
@@ -21,8 +17,15 @@
 
 .garden-header-item p {
     margin: 1rem;
-    color: white;
-    font-style: italic;
+    color: rgba(0, 0, 0, .87);
+    /* font-style: italic; */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pink {
+    color: #ff4081;
 }
 
 mat-list {

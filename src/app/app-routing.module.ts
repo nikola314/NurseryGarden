@@ -14,6 +14,7 @@ import { ProductListComponent } from './company/product-list/product-list.compon
 import { OrderListComponent } from './company/order-list/order-list.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { StoreComponent } from './product/store/store.component';
+import { StatisticsComponent } from './company/statistics/statistics.component';
 
 const routes: Routes = [
   { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrderListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
     canActivate: [AuthGuard],
   },
   { path: 'requests', component: RequestsComponent },

@@ -7,6 +7,7 @@ import { Product } from '../product.model';
 import { GardenService } from 'src/app/farmer/garden.service';
 import { Garden, GardenBackendModel } from 'src/app/farmer/garden.model';
 import { Order } from '../order.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-store',
@@ -26,8 +27,15 @@ export class StoreComponent implements OnInit {
   constructor(
     private productsService: ProductService,
     private authService: AuthService,
-    private gardensService: GardenService
+    private gardensService: GardenService,
+    private _snackBar: MatSnackBar
   ) {}
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   ngOnInit(): void {
     this.getProducts();
@@ -73,7 +81,6 @@ export class StoreComponent implements OnInit {
 
   addToCart(product: Product) {
     // Todo: if available
-    console.log(product);
     let ind = this.productsInCart.data.findIndex(
       (pr) =>
         product._id == pr.product._id &&
@@ -103,9 +110,19 @@ export class StoreComponent implements OnInit {
       };
       orders.push(order);
     }
+    let i = 0;
     for (let order of orders) {
-      this.productsService.makeOrder(order);
+      this.productsService.makeOrder(order).subscribe((response) => {
+        // console.log(response);
+        if (++i == orders.length)
+          this.openSnackBar('Products successfully purchased!', 'Close');
+      });
     }
+    this.clearCart();
+  }
+
+  clearCart() {
+    this.productsInCart.data = [];
   }
 
   totalCartSum() {
@@ -114,6 +131,14 @@ export class StoreComponent implements OnInit {
       sum += row.product.price * row.count;
     }
     return sum;
+  }
+
+  cartItemCount() {
+    let cnt = 0;
+    for (let row of this.productsInCart.data) {
+      cnt += row.count;
+    }
+    return cnt;
   }
 
   selectGarden(garden) {

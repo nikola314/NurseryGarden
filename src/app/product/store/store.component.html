@@ -10,7 +10,7 @@
 </button>
 </div>
 
-<p class="selected-garden-name">{{selectedGarden.name}}</p>
+<p class="selected-garden-name">{{selectedGarden?.name}}</p>
 
 <mde-popover #gardenPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="true" mdePopoverLeaveDelay="0">
     <mat-card style="max-width: 300px; min-width:150px;">
@@ -28,7 +28,7 @@
 </mde-popover>
 
 <div class="shopping-cart">
-    <button mat-mini-fab color="accent" [mdePopoverTriggerFor]="cartPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="click">
+    <button mat-mini-fab [matBadge]="cartItemCount()" matBadgeColor="primary" color="accent" [mdePopoverTriggerFor]="cartPopover" #popoverTrigger="mdePopoverTrigger" mdePopoverTriggerOn="click">
 <mat-icon>shopping_cart</mat-icon>
 </button>
 </div>
@@ -58,6 +58,7 @@
         </mat-card-content>
         <mat-card-actions>
             <p>Total: {{totalCartSum()}}$</p>
+            <button mat-button (click)="clearCart()">Clear</button>
             <button mat-button (click)="buyProductsFromCart()">Buy</button>
         </mat-card-actions>
     </mat-card>
