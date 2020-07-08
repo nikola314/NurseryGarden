@@ -1,0 +1,23 @@
+.jumbotron {
+    text-align: right;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    background-image: url("../../assets/images/slider.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+}
+
+.subtitle {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.jumbotron h1 {
+    margin-bottom: 3rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}

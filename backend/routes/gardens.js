@@ -1,5 +1,4 @@
 const checkAuth = require("../middleware/check-auth");
-const extractFile = require("../middleware/file");
 
 const express = require("express");
 const router = express.Router();

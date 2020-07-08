@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PostListComponent } from './posts/post-list/post-list.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -15,15 +13,10 @@ import { OrderListComponent } from './company/order-list/order-list.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { StoreComponent } from './product/store/store.component';
 import { StatisticsComponent } from './company/statistics/statistics.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
-  { path: '', component: PostListComponent, canActivate: [HomePageGuard] },
-  { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
-  {
-    path: 'edit/:postId',
-    component: PostCreateComponent,
-    canActivate: [AuthGuard],
-  },
+  { path: '', component: WelcomePageComponent, canActivate: [HomePageGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'gardens', component: GardenListComponent },

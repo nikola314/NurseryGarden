@@ -6,7 +6,6 @@ const cron = require("node-cron");
 
 const jobs = require("./cron-jobs");
 
-const postsRoutes = require("./routes/posts");
 const authRoutes = require("./routes/auth");
 const gardensRoutes = require("./routes/gardens");
 const productsRoutes = require("./routes/products");
@@ -45,7 +44,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/posts", postsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/gardens", gardensRoutes);
 app.use("/api/products", productsRoutes);
