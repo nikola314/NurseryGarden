@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../product.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,12 +18,14 @@ export class ProductDetailsComponent implements OnInit {
   canComment = false;
   content: string;
   rating = 0;
+  owner = false;
   commentsDataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
     private productsService: ProductService,
     public route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -46,6 +48,8 @@ export class ProductDetailsComponent implements OnInit {
         this.commentsDataSource.data = this.product.comments;
         this.commentsDataSource.paginator = this.paginator;
         this.canComment = this.getCanComment();
+        this.owner =
+          response.product.manufacturer == this.authService.getUserId();
       }
     });
   }
@@ -74,5 +78,11 @@ export class ProductDetailsComponent implements OnInit {
       .subscribe((response) => {
         return response.canComment;
       });
+  }
+
+  deleteProduct() {
+    this.productsService.deleteProduct(this.product._id).subscribe((params) => {
+      this.router.navigate(['']);
+    });
   }
 }

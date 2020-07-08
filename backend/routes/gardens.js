@@ -12,6 +12,8 @@ router.put("/:id", checkAuth, gardenController.updateGarden);
 
 router.get("", checkAuth, gardenController.getGardens);
 
+router.get("/notification", checkAuth, gardenController.getNotificationGardens);
+
 router.get("/:id", checkAuth, gardenController.getGarden);
 
 router.delete("/:id", checkAuth, gardenController.deleteGarden);

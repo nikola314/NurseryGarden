@@ -68,4 +68,10 @@ export class ProductService {
       ORDERS_URL + '/stats'
     );
   }
+
+  getPDFData() {
+    return this.http.get<{ message: string; stats: any }>(
+      ORDERS_URL + '/pdf-stats'
+    );
+  }
 }

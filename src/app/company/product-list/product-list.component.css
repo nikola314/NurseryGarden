@@ -16,3 +16,7 @@ table {
 .json-button {
     margin-top: 1rem;
 }
+
+.actions-wrapper {
+    text-align: center;
+}

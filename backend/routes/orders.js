@@ -10,6 +10,8 @@ router.get("/company", checkAuth, orderController.getCompanyOrders);
 
 router.get("/stats", checkAuth, orderController.getStatisticsData);
 
+router.get("/pdf-stats", checkAuth, orderController.getPDFData);
+
 router.post("", checkAuth, orderController.createOrder);
 
 router.get(
@@ -17,5 +19,11 @@ router.get(
     checkAuth,
     orderController.getIsOrderedByUser
 );
+
+router.get("/couriers", checkAuth, orderController.getCourierDistance);
+
+router.post("/accept", checkAuth, orderController.acceptOrder);
+
+router.post("/deny", checkAuth, orderController.denyOrder);
 
 module.exports = router;

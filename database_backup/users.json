@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "5ea8b548638afd4e00969451"
+  },
+  "email": "nikola.kesic97@gmail.com",
+  "password": "$2b$10$lE14cU1ZMppSxOkXVAO6w.P3cYI8Yhn6jRX6tKOw5MI.HpRC1Omg6",
+  "firstName": "Nikola",
+  "lastName": "Kesic",
+  "approved": true,
+  "username": "nikola314",
+  "phone": "0693487410",
+  "location": "Jastrebacka 47 Beograd",
+  "date": {
+    "$date": "2020-04-09T22:00:00Z"
+  },
+  "isCompany": false,
+  "__v": 0,
+  "isAdmin": false
+},{
+  "_id": {
+    "$oid": "5ea8b86f638afd4e00969452"
+  },
+  "email": "nevena@djak.com",
+  "password": "$2b$10$1HaztDowOiaGBzgdj8Em0O15lFqf9CfoLHFtXt2bINO38uCxlMuEK",
+  "firstName": "Nevena",
+  "lastName": "Djakovic",
+  "approved": false,
+  "username": "nancy333",
+  "phone": "0638082213",
+  "location": "Franca Jankea 3 Beograd",
+  "date": {
+    "$date": "2020-04-17T22:00:00Z"
+  },
+  "isCompany": false,
+  "__v": 0,
+  "isAdmin": false
+},{
+  "_id": {
+    "$oid": "5ecbe0e269df9d39dcda9bb7"
+  },
+  "email": "admin@admin.com",
+  "password": "$2b$10$v1g6.M9r8jjIFR566mxd9edgPSnJbbcW73I.C4X540GlPcOrjN2Wi",
+  "firstName": "Nikola",
+  "lastName": "Kesic",
+  "approved": true,
+  "username": "Admin",
+  "phone": "0693487410",
+  "location": "beograd",
+  "date": {
+    "$date": "2020-05-20T22:00:00Z"
+  },
+  "isCompany": false,
+  "isAdmin": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ecbf5a4e22dc02b04be167e"
+  },
+  "email": "micko@micko.com",
+  "password": "$2b$10$jfNstbavFa4Ro5O7XeHssu43zeqLUU.XKv/1eEZk192dKBnGldk7i",
+  "firstName": "Milorad",
+  "lastName": "Vulic",
+  "approved": true,
+  "username": "mickoni17",
+  "phone": "066668481",
+  "location": "Juzni bulevar 45 Beograd",
+  "date": {
+    "$date": "2020-05-21T22:00:00Z"
+  },
+  "isCompany": false,
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "email": "c@c.com",
+  "password": "$2b$10$QKbWWlW/UCmvPy8Mv23n7.AbO4FHSwIncArPUpWjvqkwH.9toT7ce",
+  "firstName": "Company 1",
+  "lastName": null,
+  "approved": true,
+  "username": "cmp",
+  "phone": "065065065",
+  "location": "Bulevar kralja Aleksandra 73 Beograd",
+  "date": {
+    "$date": "2020-07-23T22:00:00Z"
+  },
+  "isCompany": true,
+  "isAdmin": false,
+  "__v": 0
+}]

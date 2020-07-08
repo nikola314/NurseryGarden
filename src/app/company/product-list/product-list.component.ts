@@ -96,6 +96,13 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  deleteProduct(product) {
+    console.log(product._id);
+    this.productService.deleteProduct(product._id).subscribe((response) => {
+      this.getProducts();
+    });
+  }
+
   onJSONPicked($event) {
     this.file = (event.target as HTMLInputElement).files[0];
     const fileReader = new FileReader();

@@ -32,3 +32,7 @@ table {
 .rate-div mat-icon {
     cursor: pointer;
 }
+
+.remove-product {
+    float: right;
+}

@@ -12,7 +12,7 @@ let transporter = nodemailer.createTransport({
 });
 
 function decreaseWaterAndTemperature() {
-    Garden.updateMany({}, { $inc: { water: -1, temperature: -0.5 } })
+    Garden.updateMany({}, { $inc: { water: -(1.0 / 30), temperature: -(0.5 / 30) } })
         .then((result) => {
             console.log("Successfully updatede garden conditions!");
         })

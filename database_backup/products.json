@@ -1,0 +1,85 @@
+[{
+  "_id": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "name": "Rice",
+  "isPlant": true,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 120,
+  "time": 500000,
+  "price": 2,
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "name": "Apple",
+  "isPlant": true,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 40,
+  "time": 1000000,
+  "price": 7,
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "name": "Barley",
+  "isPlant": true,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 500,
+  "time": 60000,
+  "price": 4,
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "name": "Wheat",
+  "isPlant": true,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 100,
+  "time": 10000000,
+  "price": 10,
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "name": "Super Suplement",
+  "isPlant": false,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 50,
+  "time": 20000,
+  "price": 14,
+  "comments": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04eae14b9065402096412d"
+  },
+  "name": "Extra Super Suplement",
+  "isPlant": false,
+  "manufacturer": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "available": 70,
+  "time": 50000,
+  "price": 20,
+  "comments": [],
+  "__v": 0
+}]

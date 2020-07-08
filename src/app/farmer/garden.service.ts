@@ -15,7 +15,13 @@ export class GardenService {
     gardens: Garden[];
   }>();
 
+  private gardenUpdateListener: Subject<any> = new Subject<any>();
+
   constructor(private http: HttpClient, private router: Router) {}
+
+  getUpdateListener() {
+    return this.gardenUpdateListener.asObservable();
+  }
 
   getGardens() {
     this.http
@@ -91,6 +97,9 @@ export class GardenService {
       water: garden.water,
       temperature: garden.temperature,
     };
+    console.log('update');
+    this.gardenUpdateListener.next(1);
+
     return this.http.put(BACKEND_URL + garden.id, updateData);
   }
 
@@ -100,6 +109,13 @@ export class GardenService {
       product: slot.product,
     };
     return this.http.put(BACKEND_URL + 'slot/' + slot._id, updateData);
+  }
+
+  getNotificationGardens() {
+    console.log('getNotificationGardens');
+    return this.http.get<{ message: string; gardens: GardenBackendModel[] }>(
+      BACKEND_URL + 'notification/'
+    );
   }
 
   //  ----------------------------------------------------------------------------------------------------------------------

@@ -46,7 +46,7 @@ exports.updateProduct = (req, res, next) => {
                 product.isPlant = req.body.isPlant;
                 product.price = req.body.price;
                 if (req.body.comments) {
-                    product.comments = req.body.comments
+                    product.comments = req.body.comments;
                 }
                 product.save().then((result) => {
                     res.status(201).json({

@@ -13,7 +13,7 @@
     <mat-tab label="Garden">
         <div>
             <div class="control-menu-item">
-                <span class="num-icon">{{garden?.water}}</span>
+                <span class="num-icon">{{garden?.water.toFixed(2)}}</span>
                 <mat-icon aria-hidden="false" class="icon-water">opacity</mat-icon>
                 <button mat-icon-button class="icon-add-remove" (click)="addWater(1)">
                   <mat-icon >add</mat-icon>
@@ -23,7 +23,7 @@
                     </button>
             </div>
             <div class="control-menu-item">
-                <span class="num-icon">{{garden?.temperature}}</span>
+                <span class="num-icon">{{garden?.temperature.toFixed(2)}}</span>
                 <mat-icon class="icon-temp">whatshot</mat-icon>
                 <button mat-icon-button class="icon-add-remove" (click)="addTemperature(0.5)">
                 <mat-icon >add</mat-icon>

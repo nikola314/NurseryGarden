@@ -53,10 +53,10 @@
 
 
 - Online store
-  - Ordered and delivered
+  + Ordered and delivered
   - Cancel orders
   + Cart
-  - decrease number of available products after they're ordered
+!!!  - decrease number of available products after they're ordered
     - if order is rejected return to available
 
 
@@ -74,16 +74,16 @@
     + backend for requests
   + Products list page
   + Order list page
-  - Accept or reject orders
-  - Sending orders
-    - google distance API
-    - 5 employees
-  - when delivery is picked up set up a cron job to execute upon arrival and add products to garden
+  + Accept or reject orders
+  + Sending orders
+    + google distance API
+    + 5 employees
+  + when delivery is picked up set up a cron job to execute upon arrival and add products to garden
   - company statistics
   + CART
 
-- Delivery - transfer order to warehouse
-        - Add to garden storage (warehouse) on delivery
++ Delivery - transfer order to warehouse
+        + Add to garden storage (warehouse) on delivery
 
     + backend-order.js isOrderedByUser
     + front - comment div if can comment
@@ -93,3 +93,12 @@
       -comments on product-details page
 
 - occupied on garden list page
+
+
+distance api key: AIzaSyBX68PfCfs6tuA0FETqRIt5INrWpcjEtcY
+
+
+mongodb+srv://nikola314:KZg5JvUbhvOnXsR3@cluster0-unpq0.mongodb.net/test
+
+
+mongoexport --host "Cluster0-shard-0/cluster0-shard-00-00-unpq0.mongodb.net:27017,cluster0-shard-00-01-unpq0.mongodb.net:27017,cluster0-shard-00-02-unpq0.mongodb.net:27017" --ssl --username nikola314 --password KZg5JvUbhvOnXsR3 --authenticationDatabase admin --db test --collection users --type json --out users

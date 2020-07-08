@@ -4,6 +4,25 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 const mongoose = require("mongoose");
 
+exports.getNotificationGardens = (req, res, next) => {
+    const userId = req.userData.userId;
+    Garden.find({
+            owner: userId,
+            $or: [{ temperature: { $lt: 12 } }, { water: { $lt: 75 } }],
+        })
+        .then((gardens) => {
+            res.status(200).json({
+                message: "Gardens fetched successfully!",
+                gardens: gardens,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Fetching gardens failed!",
+            });
+        });
+};
+
 exports.createGarden = (req, res, next) => {
     const userId = req.userData.userId;
     var garden = new Garden({
@@ -142,8 +161,8 @@ exports.getGarden = (req, res, next) => {
             path: "orders",
             populate: {
                 path: "product",
-                model: "Product"
-            }
+                model: "Product",
+            },
         })
         .then((garden) => {
             if (garden.owner != req.userData.userId) {

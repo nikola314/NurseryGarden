@@ -1,5 +1,9 @@
 <mat-card>
-    <mat-card-title class="pink-underline">{{product.name}}</mat-card-title>
+    <mat-card-title class="pink-underline">{{product.name}}
+        <div class="remove-product"><button mat-icon-button color="accent" (click)="deleteProduct()">
+      <mat-icon>delete_forever</mat-icon>
+      </button></div>
+    </mat-card-title>
     <mat-card-content>
         <mat-list role="list">
             <mat-divider></mat-divider>

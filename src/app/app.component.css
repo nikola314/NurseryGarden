@@ -3,3 +3,18 @@ main {
     width: 80%;
     margin: 1rem auto;
 }
+
+.notification {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 15rem;
+    max-width: 30rem;
+    max-height: 10rem;
+    z-index: 9999;
+}
+
+mat-card {
+    background-color: orangered;
+    color: white;
+}

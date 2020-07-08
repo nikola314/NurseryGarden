@@ -6,4 +6,5 @@ export interface Order {
   isDelivered: boolean;
   garden: any;
   timestamp: Date;
+  status: string;
 }

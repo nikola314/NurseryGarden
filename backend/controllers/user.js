@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const Courier = require("../models/courier");
 
 exports.creteUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then((hash) => {
@@ -19,10 +20,24 @@ exports.creteUser = (req, res, next) => {
         });
         user
             .save()
-            .then((result) => {
+            .then((createdUser) => {
+                if (createdUser.isCompany) {
+                    // create couriers
+                    for (let i = 0; i < 5; i++) {
+                        const courier = new Courier({
+                            company: createdUser._id,
+                            timestamp: new Date(),
+                            indentNumber: null,
+                            status: 0,
+                        });
+                        courier.save().then((cr) => {
+                            console.log(cr._id);
+                        });
+                    }
+                }
                 res.status(201).json({
                     message: "User created!",
-                    result: result,
+                    result: createdUser,
                 });
             })
             .catch((err) => {
@@ -156,7 +171,7 @@ exports.updateUser = (req, res, next) => {
                             res.status(401).json({ message: "Error updating user!" });
                         }
                     });
-                })
+                });
             } else {
                 User.updateOne({ _id: user._id }, { $set: user }).then((result) => {
                     if (result.n > 0) {
@@ -166,7 +181,6 @@ exports.updateUser = (req, res, next) => {
                     }
                 });
             }
-
         })
         .catch((err) => {
             console.log(err);
@@ -174,7 +188,7 @@ exports.updateUser = (req, res, next) => {
                 message: "Updating failed",
             });
         });
-}
+};
 
 exports.deleteUser = (req, res, next) => {
     User.deleteOne({ _id: req.params.id })
@@ -190,4 +204,4 @@ exports.deleteUser = (req, res, next) => {
                 message: "Failed to delete user!",
             });
         });
-}
+};

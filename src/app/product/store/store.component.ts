@@ -8,6 +8,7 @@ import { GardenService } from 'src/app/farmer/garden.service';
 import { Garden, GardenBackendModel } from 'src/app/farmer/garden.model';
 import { Order } from '../order.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-store',
@@ -98,6 +99,8 @@ export class StoreComponent implements OnInit {
 
   buyProductsFromCart() {
     let orders = [];
+    let indentNumber = UUID.UUID();
+    console.log(indentNumber);
     for (let row of this.productsInCart.data) {
       if (!row.garden || !row.product || row.count == 0) continue;
       let order = {
@@ -107,13 +110,13 @@ export class StoreComponent implements OnInit {
         isDelivered: false,
         garden: row.garden._id,
         timestamp: new Date(),
+        indentNumber: indentNumber,
       };
       orders.push(order);
     }
     let i = 0;
     for (let order of orders) {
       this.productsService.makeOrder(order).subscribe((response) => {
-        // console.log(response);
         if (++i == orders.length)
           this.openSnackBar('Products successfully purchased!', 'Close');
       });

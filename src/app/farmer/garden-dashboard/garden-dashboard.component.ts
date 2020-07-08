@@ -31,6 +31,8 @@ export class GardenDashboardComponent
   ordersDisplayedColumns: string[] = ['product.name', 'count', 'isPickedUp'];
   popoverPlantDisplayedColumns: string[] = ['product.name', 'count'];
 
+  notificationMessage = null;
+
   plantArray;
   warehouseDataSource: MatTableDataSource<any>;
   ordersDataSource: MatTableDataSource<any>;

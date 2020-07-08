@@ -10,6 +10,9 @@ import {
 import * as d3 from 'd3';
 import { ProductService } from 'src/app/product/product.service';
 import { Observable } from 'rxjs';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-statistics',
@@ -24,6 +27,8 @@ export class StatisticsComponent implements OnInit {
   private chartContainer: ElementRef;
 
   data: any[] = [{ count: 15, date: '2020-05-30' }];
+  showButton = false;
+  private pdfData;
 
   ngOnInit(): void {
     this.productsService.getStatisticsData().subscribe((response) => {
@@ -31,12 +36,48 @@ export class StatisticsComponent implements OnInit {
       this.data = response.stats;
       this.createChart();
     });
+    this.productsService.getPDFData().subscribe((response) => {
+      console.log(JSON.parse(JSON.stringify(response)));
+      this.pdfData = response.stats;
+      this.showButton = true;
+    });
   }
 
   margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   onResize($event) {
     this.createChart();
+  }
+
+  donwloadPDF() {
+    var docDefinition = {
+      content: [],
+    };
+    for (let stat of this.pdfData) {
+      let data = {
+        layout: 'lightHorizontalLines',
+        table: {
+          headerRows: 1,
+          widths: ['*', 'auto', 100, '*', 'auto'],
+
+          body: [['Name', 'Quantity', 'Client', 'Location', 'Price']],
+        },
+      };
+      let priceTotal = 0;
+      for (let product of stat.products) {
+        data.table.body.push([
+          product.product,
+          product.count,
+          stat.client,
+          stat.location,
+          product.price,
+        ]);
+        priceTotal += product.count * product.price;
+      }
+      data.table.body.push(['', '', '', 'Total Price:', priceTotal.toString()]);
+      docDefinition.content.push(data);
+    }
+    pdfMake.createPdf(docDefinition).download();
   }
 
   private createChart(): void {

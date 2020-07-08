@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "5f04e8b54b90654020964122"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "status": 0,
+  "company": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:27:17.081Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04e8b54b90654020964123"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "status": 0,
+  "company": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:27:17.082Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04e8b54b90654020964126"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "status": 0,
+  "company": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:27:17.084Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04e8b54b90654020964125"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "status": 0,
+  "company": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:27:17.083Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f04e8b54b90654020964124"
+  },
+  "indentNumber": null,
+  "status": 0,
+  "company": {
+    "$oid": "5f04e8b34b90654020964121"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:27:17.083Z"
+  },
+  "__v": 0
+}]

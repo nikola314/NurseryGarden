@@ -1,4 +1,7 @@
 <app-header></app-header>
 <main>
     <router-outlet></router-outlet>
+    <div class="notification" *ngIf="notificationMessage != null">
+        <mat-card>{{notificationMessage}}</mat-card>
+    </div>
 </main>

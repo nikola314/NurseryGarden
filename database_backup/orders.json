@@ -1,0 +1,784 @@
+[{
+  "_id": {
+    "$oid": "5f04ed7b4b906540209641f6"
+  },
+  "count": 4,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:47:39.822Z"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "__v": 0,
+  "isPickeUp": false
+},{
+  "_id": {
+    "$oid": "5f04ed7b4b906540209641f7"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:47:39.822Z"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "__v": 0,
+  "isPickeUp": false
+},{
+  "_id": {
+    "$oid": "5f04ed7b4b906540209641f8"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:47:39.822Z"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "__v": 0,
+  "isPickeUp": false
+},{
+  "_id": {
+    "$oid": "5f04ed7b4b906540209641f9"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-07T21:47:39.822Z"
+  },
+  "indentNumber": "ed087a65-a06d-8496-dc7a-061fcf345826",
+  "__v": 0,
+  "isPickeUp": false
+},{
+  "_id": {
+    "$oid": "5f05f376b2847138d83b3587"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:25:26.421Z"
+  },
+  "indentNumber": "d74ecc20-2bae-38fe-85b1-9e3e4f8a2b70",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f376b2847138d83b358a"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:25:26.422Z"
+  },
+  "indentNumber": "d74ecc20-2bae-38fe-85b1-9e3e4f8a2b70",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f376b2847138d83b3589"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:25:26.422Z"
+  },
+  "indentNumber": "d74ecc20-2bae-38fe-85b1-9e3e4f8a2b70",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f376b2847138d83b3588"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:25:26.422Z"
+  },
+  "indentNumber": "d74ecc20-2bae-38fe-85b1-9e3e4f8a2b70",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f4821b587f349ca91306"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:29:54.468Z"
+  },
+  "indentNumber": "803f6ed9-ad23-55f3-c46c-bc6b41abefc2",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f4821b587f349ca91304"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:29:54.468Z"
+  },
+  "indentNumber": "803f6ed9-ad23-55f3-c46c-bc6b41abefc2",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f4821b587f349ca91303"
+  },
+  "count": 4,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:29:54.468Z"
+  },
+  "indentNumber": "803f6ed9-ad23-55f3-c46c-bc6b41abefc2",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f4821b587f349ca91305"
+  },
+  "count": 4,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:29:54.468Z"
+  },
+  "indentNumber": "803f6ed9-ad23-55f3-c46c-bc6b41abefc2",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f5fd556c8640f850a052"
+  },
+  "count": 2,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:13.482Z"
+  },
+  "indentNumber": "a63a48ed-a258-12e4-cc15-46278e96cfe7",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f5fd556c8640f850a051"
+  },
+  "count": 2,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:13.482Z"
+  },
+  "indentNumber": "a63a48ed-a258-12e4-cc15-46278e96cfe7",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f604556c8640f850a053"
+  },
+  "count": 4,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:20.551Z"
+  },
+  "indentNumber": "3590e74c-74d0-51cb-4bda-3ab1b85a3f13",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f604556c8640f850a054"
+  },
+  "count": 2,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:20.551Z"
+  },
+  "indentNumber": "3590e74c-74d0-51cb-4bda-3ab1b85a3f13",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f604556c8640f850a055"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:20.551Z"
+  },
+  "indentNumber": "3590e74c-74d0-51cb-4bda-3ab1b85a3f13",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f60b556c8640f850a056"
+  },
+  "count": 1,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eae14b9065402096412d"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:27.964Z"
+  },
+  "indentNumber": "ca0fd030-7c03-79b0-855d-fdf9b54e6e46",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f60b556c8640f850a057"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:27.964Z"
+  },
+  "indentNumber": "ca0fd030-7c03-79b0-855d-fdf9b54e6e46",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a05a"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a059"
+  },
+  "count": 13,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a058"
+  },
+  "count": 4,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a05d"
+  },
+  "count": 2,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a05b"
+  },
+  "count": 2,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eae14b9065402096412d"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f61d556c8640f850a05c"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:36:45.775Z"
+  },
+  "indentNumber": "dda1f5d3-6252-0c46-d190-2398edf748db",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812a"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812c"
+  },
+  "count": 16,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812b"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eae14b9065402096412d"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812e"
+  },
+  "count": 1,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812f"
+  },
+  "count": 3,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f831e302052d1802812d"
+  },
+  "count": 6,
+  "isDelivered": true,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed434b9065402096415f"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:45:37.597Z"
+  },
+  "indentNumber": "8e0ed4ba-d652-4ffb-f8b0-bc7f3e0a55ba",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f849e302052d18028131"
+  },
+  "count": 11,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:01.426Z"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f849e302052d18028133"
+  },
+  "count": 6,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:01.426Z"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f849e302052d18028132"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:01.426Z"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f849e302052d18028130"
+  },
+  "count": 12,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:01.426Z"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f849e302052d18028134"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eae14b9065402096412d"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:01.426Z"
+  },
+  "indentNumber": "32a97a4c-d23b-7e7d-2b34-1839f5ebcb56",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f855e302052d18028136"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04eaba4b9065402096412c"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:13.586Z"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f855e302052d18028135"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea874b9065402096412b"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:13.586Z"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f855e302052d18028139"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea1d4b90654020964128"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:13.586Z"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f855e302052d18028137"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea6d4b9065402096412a"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:13.586Z"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f05f855e302052d18028138"
+  },
+  "count": 4,
+  "isDelivered": false,
+  "isPickedUp": true,
+  "status": "accepted",
+  "product": {
+    "$oid": "5f04ea394b90654020964129"
+  },
+  "garden": {
+    "$oid": "5f04ed124b9065402096412e"
+  },
+  "timestamp": {
+    "$date": "2020-07-08T16:46:13.586Z"
+  },
+  "indentNumber": "f7920c9f-35f0-1acb-06fb-54795446693e",
+  "__v": 0
+}]
