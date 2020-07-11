@@ -37,24 +37,24 @@ exports.deleteProduct = (req, res, next) => {
 exports.updateProduct = (req, res, next) => {
     Product.findById(req.params.id)
         .then((product) => {
-            if (product.manufacturer != req.userData.userId) {
-                res.status(401).json({ message: "Not authorized!" });
-            } else {
-                product.time = req.body.time;
-                product.available = req.body.available;
-                product.name = req.body.name;
-                product.isPlant = req.body.isPlant;
-                product.price = req.body.price;
-                if (req.body.comments) {
-                    product.comments = req.body.comments;
-                }
-                product.save().then((result) => {
-                    res.status(201).json({
-                        message: "Product updated successfully",
-                        product: product,
-                    });
-                });
+            // if (product.manufacturer != req.userData.userId) {
+            //     res.status(401).json({ message: "Not authorized!" });
+            // } else {
+            product.time = req.body.time;
+            product.available = req.body.available;
+            product.name = req.body.name;
+            product.isPlant = req.body.isPlant;
+            product.price = req.body.price;
+            if (req.body.comments) {
+                product.comments = req.body.comments;
             }
+            product.save().then((result) => {
+                res.status(201).json({
+                    message: "Product updated successfully",
+                    product: product,
+                });
+            });
+            // }
         })
         .catch((err) => {
             res.status(500).json({

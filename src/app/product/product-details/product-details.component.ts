@@ -47,7 +47,7 @@ export class ProductDetailsComponent implements OnInit {
         this.product = response.product;
         this.commentsDataSource.data = this.product.comments;
         this.commentsDataSource.paginator = this.paginator;
-        this.canComment = this.getCanComment();
+        this.getCanComment();
         this.owner =
           response.product.manufacturer == this.authService.getUserId();
       }
@@ -68,15 +68,31 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   private getCanComment(): boolean {
-    if (!this.authService.getUserId()) return false;
-    if (
-      this.product.comments.find((x) => x._id == this.authService.getUserId())
-    )
+    if (!this.authService.getUserId()) {
+      this.canComment = false;
       return false;
+    }
+    if (
+      this.product.comments.find(
+        (x) => x.user._id == this.authService.getUserId()
+      )
+    ) {
+      this.canComment = false;
+      return false;
+    }
+    console.log(this.authService.getUserId());
     this.productsService
       .getIsOrderedByUser(this.product._id)
       .subscribe((response) => {
-        return response.canComment;
+        if (
+          this.product.comments.find(
+            (x) => x.user._id == this.authService.getUserId()
+          )
+        )
+          this.canComment = false;
+        else this.canComment = response.canComment;
+        console.log(this.product.comments);
+        // return response.canComment;
       });
   }
 
